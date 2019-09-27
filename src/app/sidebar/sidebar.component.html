@@ -1,0 +1,31 @@
+<div id="appsidebar" [ngClass]="{'swipe':isMobile}" (clickOutside)="clickOutSideCloseSidebar()" [exclude]="'.togglebtn'">
+    <div id="sidebar-btn" (click)="doSidebar(false)">
+            <i class="fa fa-th-list" aria-hidden="true"></i>
+    </div>
+    <div class="sidetitle">
+        <span>jolibee</span>
+    </div>
+    <div class="sidemenu">
+        <ul class="menulist">
+            <li class="navitem" title="workspace">
+                <a  routerLinkActive="active-link" [routerLink]="['/workflow']">
+                    <div class="workspace-nav"></div>
+                </a>
+            </li>
+            <li class="navitem" title="forms">
+                <a  routerLinkActive="active-link" [routerLink]="['/forms']">
+                    <div class="forms-nav"></div>
+                </a>
+            </li>
+            <li class="navitem" title="workflow">
+                <div class="workflow-nav"></div>
+            </li>
+            <li class="navitem" title="tables">
+                <div class="tables-nav"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="user">
+        <img class="userprofile" src="https://randomuser.me/api/portraits/women/85.jpg" alt="" title="username">
+    </div>
+</div>
