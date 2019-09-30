@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { WorkflowComponent } from './components/workflow/workflow.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { NewRequestModalComponent } from './components/workflow/new-request-modal/new-request-modal.component';
+import { WorkflowItemModalComponent } from './components/workflow/workflow-item-modal/workflow-item-modal.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NewRequestModalComponent } from './components/workflow/new-request-moda
     SidebarComponent,
     WorkflowComponent,
     FormsComponent,
-    NewRequestModalComponent
+    NewRequestModalComponent,
+    WorkflowItemModalComponent
   ],
   imports: [
     BrowserModule,

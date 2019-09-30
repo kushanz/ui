@@ -1,0 +1,47 @@
+<div class="modalOverlay" [ngClass]="{'show':openModal}">
+    <div class="modalContainer">
+        <span class="modalClose" (click)="close()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="29.43" height="29.43" viewBox="0 0 29.43 29.43">
+                <defs> <style> .a-close { fill: #59626d; } </style> </defs> <g transform="translate(14.715) rotate(45)"> <path class="a-close" d="M19.681,8.954H11.857V1.13A1.4,1.4,0,0,0,10.4,0,1.4,1.4,0,0,0,8.953,1.13V8.954H1.129A1.4,1.4,0,0,0,0,10.406a1.4,1.4,0,0,0,1.129,1.452H8.953v7.824A1.4,1.4,0,0,0,10.4,20.811a1.4,1.4,0,0,0,1.452-1.129V11.858h7.824a1.4,1.4,0,0,0,1.129-1.452A1.4,1.4,0,0,0,19.681,8.954Z" transform="translate(0 -0.001)" /></g>
+            </svg>
+        </span>
+        <div class="modalContent">
+            <div class="row b-b">
+                <div class="col-md-4">
+                    <div class="item-user">
+                        <span class="item-user-img">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="">
+                        </span>
+                        <div class="user-detail-with-img">
+                            <h4 class="modalSubTitle">Randall Hurley</h4>
+                            <h5 class="modalText">Director</h5>
+                            <h5 class="modalText">randall@pixel.com</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 b-l">
+                    <div class="user-detail">
+                        <h4 class="modalSubTitle">Randall Hurley</h4>
+                        <h5 class="modalText">Director</h5>
+                        <h5 class="modalText">randall@pixel.com</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Hi Mr</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quae, repellat blanditiis nobis dolorem non ullam excepturi minima quaerat cumque voluptate voluptatem tempora odit aut ipsum quia eveniet rerum quidem?</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="modalFooter">
+                        <span class="modalApprove" >Approve</span>
+                        <span class="modalCancel" (click)="close()">Decline</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

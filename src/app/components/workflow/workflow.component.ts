@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkflowComponent implements OnInit {
   public openNewRequestModal:boolean = false;
+  public openItemModal:boolean = false;
   public isExpandSearch:boolean = false;
   public isOpenAdvanceSearch:boolean = false;
   public isOpenSearchPanel:boolean = false;
@@ -32,6 +33,10 @@ export class WorkflowComponent implements OnInit {
   // do open close new Requeat Modal
   doNewReqModal(e:boolean) {
     this.openNewRequestModal = e;
+  }
+  // do open item wise modal
+  doItemModal(e:boolean) {
+    this.openItemModal = e;
   }
   openAdvanceSeach() {
     this.isOpenAdvanceSearch = true;

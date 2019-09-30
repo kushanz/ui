@@ -340,7 +340,7 @@
                         </div>
                         <div class="workspace-list" [ngClass]="{'expand':isopenWorkspaceList}">
                             <div class="workspace-item">
-                                <div class="workspace-item-content">
+                                <div class="workspace-item-content" (click)="doItemModal(true)">
                                     <div class="workspace-item-user">
                                         <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="">
                                     </div>
@@ -349,7 +349,7 @@
                                     <span class="workspace-sub-content">UXSEA Summit 2049</span>
                                     <span class="workspace-sub-content">Manila to Singapore</span>
                                     <div class="workspace-item-footer">
-                                        <span class="workspace-item-accept">Accept</span>
+                                        <span class="workspace-item-accept">Approve</span>
                                         <span class="workspace-item-decline">Decline</span>
                                     </div>
                                 </div>
@@ -364,7 +364,7 @@
                                     <span class="workspace-sub-content">UXSEA Summit 2049</span>
                                     <span class="workspace-sub-content">Manila to Singapore</span>
                                     <div class="workspace-item-footer">
-                                        <span class="workspace-item-accept">Accept</span>
+                                        <span class="workspace-item-accept">Approve</span>
                                         <span class="workspace-item-decline">Decline</span>
                                     </div>
                                 </div>
@@ -379,7 +379,7 @@
                                     <span class="workspace-sub-content">UXSEA Summit 2049</span>
                                     <span class="workspace-sub-content">Manila to Singapore</span>
                                     <div class="workspace-item-footer">
-                                        <span class="workspace-item-accept">Accept</span>
+                                        <span class="workspace-item-accept">Approve</span>
                                         <span class="workspace-item-decline">Decline</span>
                                     </div>
                                 </div>
@@ -403,3 +403,4 @@
 
     <!-- new request modals -->
     <new-request-modal [openModal]="openNewRequestModal" (closeModal)="doNewReqModal($event)" ></new-request-modal>
+    <workflow-item-modal [openModal]="openItemModal" (closeModal)="doItemModal($event)"></workflow-item-modal>
