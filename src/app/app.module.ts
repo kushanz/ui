@@ -9,6 +9,7 @@ import { WorkflowComponent } from './components/workflow/workflow.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { NewRequestModalComponent } from './components/workflow/new-request-modal/new-request-modal.component';
 import { WorkflowItemModalComponent } from './components/workflow/workflow-item-modal/workflow-item-modal.component';
+import { LoaderSvgComponent } from './loader-svg/loader-svg.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { WorkflowItemModalComponent } from './components/workflow/workflow-item-
     WorkflowComponent,
     FormsComponent,
     NewRequestModalComponent,
-    WorkflowItemModalComponent
+    WorkflowItemModalComponent,
+    LoaderSvgComponent
   ],
   imports: [
     BrowserModule,
