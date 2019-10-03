@@ -243,7 +243,7 @@
 </div>
 
  <!-- content area -->
- <div id="appcontent">
+ <div id="appcontent" style="overflow: hidden;position: relative;" [perfectScrollbar]="{suppressScrollX:true}">
         <div class="container" style="max-width: 100%;">
             <div class="searchpanel" *ngIf="isOpenSearchPanel">
                 <div class="row">
@@ -397,7 +397,6 @@
                     
                 </div>
             </div>
-        </div>
         <loader-svg [show]="false"></loader-svg>
     </div>
 

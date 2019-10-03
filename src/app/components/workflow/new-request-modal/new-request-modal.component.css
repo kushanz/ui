@@ -43,6 +43,7 @@
 }
 .modalContent {   
     display: block;
+    overflow: hidden;
 }
 .modalTitle {
     font-size: 20px;
