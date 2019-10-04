@@ -12,6 +12,12 @@ export class WorkflowComponent implements OnInit {
   public isOpenAdvanceSearch:boolean = false;
   public isOpenSearchPanel:boolean = false;
   public isopenWorkspaceList:boolean = false;
+  public received:boolean = false;
+  public sent:boolean = false;
+  public completed:boolean = false;
+  public timeescalated:boolean = false;
+
+
   constructor() { }
 
   ngOnInit() {
