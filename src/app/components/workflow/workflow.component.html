@@ -243,163 +243,166 @@
 </div>
 
  <!-- content area -->
- <div id="appcontent" style="overflow: hidden;position: relative;" [perfectScrollbar]="{suppressScrollX:true}">
-        <div class="container" style="max-width: 100%;">
-            <div class="searchpanel" *ngIf="isOpenSearchPanel">
+ 
+<div id="appcontent">
+        <perfect-scrollbar>
+            <div class="container" style="max-width: 100%;">
+                <div class="searchpanel" *ngIf="isOpenSearchPanel">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-4">Requester</div>
+                                <div class="col-8">
+                                    <div class="miniInputGroup">
+                                        <select name="" id="" class="miniFormControl">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Workflow</div>
+                                <div class="col-8">
+                                    <div class="miniInputGroup">
+                                        <select name="" id="" class="miniFormControl">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Date</div>
+                                <div class="col-8">
+                                    <div class="miniInputGroup">
+                                        <select name="" id="" class="miniFormControl">
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-4">Date</div>
+                                <div class="col-8">
+                                    <div class="miniInputGroup">
+                                        <input type="text" class="miniFormControl">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">Referance#</div>
+                                <div class="col-8">
+                                    <div class="miniInputGroup">
+                                        <input type="text" class="miniFormControl">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="formCheck">
+                                        <input class="formCheckInput" type="checkbox" value="" id="subCheck1">
+                                        <label class="formCheckLabel" for="subCheck1">Completed</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="formCheck">
+                                        <input class="formCheckInput" type="checkbox" value="" id="subCheck2">
+                                        <label class="formCheckLabel" for="subCheck2">Time Lapsed</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                </div>
+                <div class="sortpanel">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="filters">
+                                <li class="filteritem selected">Receieved</li>
+                                <li class="filteritem">Sent</li>
+                                <li class="filteritem">Completed</li>
+                                <li class="filteritem">Time Scalated</li>
+                            </ul>
+                            <div class="sortbutton pull-right">
+                                <select name="" id="" class="formControl">
+                                    <option value="">Sort by</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="row">
-                            <div class="col-4">Requester</div>
-                            <div class="col-8">
-                                <div class="miniInputGroup">
-                                    <select name="" id="" class="miniFormControl">
-                                        <option value=""></option>
-                                    </select>
-                                </div>
+                        <div class="workspace-wrapper">
+                            <div class="workspace-listheader" (click)="toggleWorkspaceList()">
+                                <h4 class="workspace-listheader-title">Travel</h4>
+                                <span class="workspace-listheader-notify">4</span>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">Workflow</div>
-                            <div class="col-8">
-                                <div class="miniInputGroup">
-                                    <select name="" id="" class="miniFormControl">
-                                        <option value=""></option>
-                                    </select>
+                            <div class="workspace-list" [ngClass]="{'expand':isopenWorkspaceList}">
+                                <div class="workspace-item">
+                                    <div class="workspace-item-content" (click)="doItemModal(true)">
+                                        <div class="workspace-item-user">
+                                            <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="">
+                                        </div>
+                                        <div class="workspace-item-date">July 31, 2019</div>
+                                        <h4>Randall Hurley</h4>
+                                        <span class="workspace-sub-content">UXSEA Summit 2049</span>
+                                        <span class="workspace-sub-content">Manila to Singapore</span>
+                                    </div>
+                                    <div class="workspace-item-footer">
+                                        <span class="workspace-item-accept">Approve</span>
+                                        <span class="workspace-item-decline">Decline</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">Date</div>
-                            <div class="col-8">
-                                <div class="miniInputGroup">
-                                    <select name="" id="" class="miniFormControl">
-                                        <option value=""></option>
-                                    </select>
+                                <div class="workspace-item">
+                                    <div class="workspace-item-content">
+                                        <div class="workspace-item-user">
+                                            <img src="https://randomuser.me/api/portraits/men/71.jpg" alt="">
+                                        </div>
+                                        <div class="workspace-item-date">July 31, 2019</div>
+                                        <h4>Randall Hurley</h4>
+                                        <span class="workspace-sub-content">UXSEA Summit 2049</span>
+                                        <span class="workspace-sub-content">Manila to Singapore</span>
+                                    </div>
+                                    <div class="workspace-item-footer">
+                                        <span class="workspace-item-accept">Approve</span>
+                                        <span class="workspace-item-decline">Decline</span>
+                                    </div>
+                                </div>
+                                <div class="workspace-item">
+                                    <div class="workspace-item-content">
+                                        <div class="workspace-item-user">
+                                            <img src="https://randomuser.me/api/portraits/men/51.jpg" alt="">
+                                        </div>
+                                        <div class="workspace-item-date">July 31, 2019</div>
+                                        <h4>Randall Hurley</h4>
+                                        <span class="workspace-sub-content">UXSEA Summit 2049</span>
+                                        <span class="workspace-sub-content">Manila to Singapore</span>
+                                    </div>
+                                    <div class="workspace-item-footer">
+                                        <span class="workspace-item-accept">Approve</span>
+                                        <span class="workspace-item-decline">Decline</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="row">
-                            <div class="col-4">Date</div>
-                            <div class="col-8">
-                                <div class="miniInputGroup">
-                                    <input type="text" class="miniFormControl">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">Referance#</div>
-                            <div class="col-8">
-                                <div class="miniInputGroup">
-                                    <input type="text" class="miniFormControl">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="formCheck">
-                                    <input class="formCheckInput" type="checkbox" value="" id="subCheck1">
-                                    <label class="formCheckLabel" for="subCheck1">Completed</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="formCheck">
-                                    <input class="formCheckInput" type="checkbox" value="" id="subCheck2">
-                                    <label class="formCheckLabel" for="subCheck2">Time Lapsed</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3"></div>
-                </div>
-            </div>
-            <div class="sortpanel">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul class="filters">
-                            <li class="filteritem selected">Receieved</li>
-                            <li class="filteritem">Sent</li>
-                            <li class="filteritem">Completed</li>
-                            <li class="filteritem">Time Scalated</li>
-                        </ul>
-                        <div class="sortbutton pull-right">
-                            <select name="" id="" class="formControl">
-                                <option value="">Sort by</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="workspace-wrapper">
-                        <div class="workspace-listheader" (click)="toggleWorkspaceList()">
-                            <h4 class="workspace-listheader-title">Travel</h4>
-                            <span class="workspace-listheader-notify">4</span>
-                        </div>
-                        <div class="workspace-list" [ngClass]="{'expand':isopenWorkspaceList}">
-                            <div class="workspace-item">
-                                <div class="workspace-item-content" (click)="doItemModal(true)">
-                                    <div class="workspace-item-user">
-                                        <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="">
-                                    </div>
-                                    <div class="workspace-item-date">July 31, 2019</div>
-                                    <h4>Randall Hurley</h4>
-                                    <span class="workspace-sub-content">UXSEA Summit 2049</span>
-                                    <span class="workspace-sub-content">Manila to Singapore</span>
-                                </div>
-                                <div class="workspace-item-footer">
-                                    <span class="workspace-item-accept">Approve</span>
-                                    <span class="workspace-item-decline">Decline</span>
-                                </div>
-                            </div>
-                            <div class="workspace-item">
-                                <div class="workspace-item-content">
-                                    <div class="workspace-item-user">
-                                        <img src="https://randomuser.me/api/portraits/men/71.jpg" alt="">
-                                    </div>
-                                    <div class="workspace-item-date">July 31, 2019</div>
-                                    <h4>Randall Hurley</h4>
-                                    <span class="workspace-sub-content">UXSEA Summit 2049</span>
-                                    <span class="workspace-sub-content">Manila to Singapore</span>
-                                </div>
-                                <div class="workspace-item-footer">
-                                    <span class="workspace-item-accept">Approve</span>
-                                    <span class="workspace-item-decline">Decline</span>
-                                </div>
-                            </div>
-                            <div class="workspace-item">
-                                <div class="workspace-item-content">
-                                    <div class="workspace-item-user">
-                                        <img src="https://randomuser.me/api/portraits/men/51.jpg" alt="">
-                                    </div>
-                                    <div class="workspace-item-date">July 31, 2019</div>
-                                    <h4>Randall Hurley</h4>
-                                    <span class="workspace-sub-content">UXSEA Summit 2049</span>
-                                    <span class="workspace-sub-content">Manila to Singapore</span>
-                                </div>
-                                <div class="workspace-item-footer">
-                                    <span class="workspace-item-accept">Approve</span>
-                                    <span class="workspace-item-decline">Decline</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                   
-                </div>
-                <div class="col-md-3">
                     
+                    </div>
+                    <div class="col-md-3">
+                        
+                    </div>
+                    <div class="col-md-3">
+                        
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    
-                </div>
-            </div>
-        <loader-svg [show]="false"></loader-svg>
-    </div>
-
+            <loader-svg [show]="false"></loader-svg>
+        </div>
+    </perfect-scrollbar>
+</div>
     <!-- new request modals -->
     <new-request-modal [openModal]="openNewRequestModal" (closeModal)="doNewReqModal($event)" ></new-request-modal>
     <workflow-item-modal [openModal]="openItemModal" (closeModal)="doItemModal($event)"></workflow-item-modal>

@@ -13,7 +13,7 @@
     position: relative;
     margin-top: 80px;
     background: #F8F7FB;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     height: calc(100% - 80px);
 }
 @media screen and (max-width: 600px) {
