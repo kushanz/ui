@@ -6,12 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workflow.component.css']
 })
 export class WorkflowComponent implements OnInit {
+  public inboxItemTypes: string[] = ['Received', 'Sent', 'Completed', 'TimeEscalated'];
+  public selectedItem: string = 'Received';
   public openNewRequestModal:boolean = false;
   public openItemModal:boolean = false;
   public isExpandSearch:boolean = false;
   public isOpenAdvanceSearch:boolean = false;
   public isOpenSearchPanel:boolean = false;
-  public isopenWorkspaceList:boolean = false;
+  public openWorkspaceList:string;
   public received:boolean = false;
   public sent:boolean = false;
   public completed:boolean = false;
@@ -50,8 +52,12 @@ export class WorkflowComponent implements OnInit {
   closeAdvaneSearch() {
     this.isOpenAdvanceSearch = false;
   }
-  toggleWorkspaceList() {
-    this.isopenWorkspaceList = !this.isopenWorkspaceList;
+  toggleWorkspaceList(item:string) {
+    if(this.openWorkspaceList == item) {
+      this.openWorkspaceList ="";
+    } else {
+      this.openWorkspaceList = item;
+    }
   }
   doSearch () {
     // search Action Goes Here
@@ -60,6 +66,10 @@ export class WorkflowComponent implements OnInit {
   doSearchClear () {
     // do clear all search values
     this.isOpenSearchPanel = false;
+  }
+  // select tab item
+  tabitemClick(item:string) {
+    this.selectedItem = item;
   }
 
 }

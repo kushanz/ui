@@ -7,7 +7,7 @@ import { NotificationsService } from 'angular2-notifications';
   styleUrls: ['./workflow-item-modal.component.css']
 })
 export class WorkflowItemModalComponent implements OnInit {
-  @ViewChild('wftoast') wftoast: TemplateRef<any>;
+  @ViewChild('wftoast',{static: false}) wftoast: TemplateRef<any>;
   @Input('openModal') public openModal: boolean;
   @Output('closeModal') public closeModal:EventEmitter<boolean> = new EventEmitter<boolean>()
   constructor(private _notifications: NotificationsService) { 
@@ -22,14 +22,6 @@ export class WorkflowItemModalComponent implements OnInit {
   }
   toast() {
     // this._notifications.success(this.wftoast);
-    this._notifications.success('Item created!', 'Click to undo...', {
-      timeOut: 2000,
-      theClass: 'wfnotify',
-      animate:"fromBottom",
-      showProgressBar: false,
-      pauseOnHover: true,
-      clickToClose: true,
-      clickIconToClose: true
-    });
+    this._notifications.success('Item created!', 'Click to undo...');
   }
 }

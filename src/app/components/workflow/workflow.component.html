@@ -22,7 +22,7 @@
                     transform="translate(-0.984 0)" />
             </svg>
         </span>
-        <input type="text" id="mainsearchinput" placeholder="Search" (focus)="expandSeach(true)">
+        <input type="text" id="mainsearchinput" placeholder="Search" (focus)="expandSeach(true)" autocomplete="off">
         <span class="dropdown" (click)="expandSearchToggle()">
             <svg xmlns="http://www.w3.org/2000/svg" width="11.125" height="6.342" viewBox="0 0 11.125 6.342">
                 <defs>
@@ -320,10 +320,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="filters">
-                                <li class="filteritem selected">Receieved</li>
-                                <li class="filteritem">Sent</li>
-                                <li class="filteritem">Completed</li>
-                                <li class="filteritem">Time Scalated</li>
+                                <li class="filteritem" [ngClass]="{'selected':selectedItem=='Received'}" (click)="tabitemClick('Received')">Received</li>
+                                <li class="filteritem" [ngClass]="{'selected':selectedItem=='Sent'}" (click)="tabitemClick('Sent')">Sent</li>
+                                <li class="filteritem" [ngClass]="{'selected':selectedItem=='Completed'}" (click)="tabitemClick('Completed')">Completed</li>
+                                <li class="filteritem" [ngClass]="{'selected':selectedItem=='TimeEscalated'}" (click)="tabitemClick('TimeEscalated')">Time Scalated</li>
                             </ul>
                             <div class="sortbutton pull-right">
                                 <select name="" id="" class="miniFormControl">
@@ -336,11 +336,11 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="workspace-wrapper">
-                            <div class="workspace-listheader" (click)="toggleWorkspaceList()">
+                            <div class="workspace-listheader" (click)="toggleWorkspaceList('travel')">
                                 <h4 class="workspace-listheader-title">Travel</h4>
                                 <span class="workspace-listheader-notify">4</span>
                             </div>
-                            <div class="workspace-list" [ngClass]="{'expand':isopenWorkspaceList}">
+                            <div class="workspace-list" [ngClass]="{'expand':openWorkspaceList==='travel'}">
                                 <div class="workspace-item">
                                     <div class="workspace-item-content" (click)="doItemModal(true)">
                                         <div class="workspace-item-user">
@@ -390,7 +390,45 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                    
+                        <div class="workspace-wrapper">
+                            <div class="workspace-listheader" (click)="toggleWorkspaceList('leave')">
+                                <h4 class="workspace-listheader-title">Travel</h4>
+                                <span class="workspace-listheader-notify">2</span>
+                            </div>
+                            <div class="workspace-list" [ngClass]="{'expand':openWorkspaceList==='leave'}">
+                                <div class="workspace-item">
+                                    <div class="workspace-item-content" (click)="doItemModal(true)">
+                                        <div class="workspace-item-user">
+                                            <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="">
+                                        </div>
+                                        <div class="workspace-item-date">July 31, 2019</div>
+                                        <h4>Randall Hurley</h4>
+                                        <span class="workspace-sub-content">UXSEA Summit 2049</span>
+                                        <span class="workspace-sub-content">Manila to Singapore</span>
+                                    </div>
+                                    <div class="workspace-item-footer">
+                                        <span class="workspace-item-accept">Approve</span>
+                                        <span class="workspace-item-decline">Decline</span>
+                                    </div>
+                                </div>
+                                <div class="workspace-item">
+                                    <div class="workspace-item-content">
+                                        <div class="workspace-item-user">
+                                            <img src="https://randomuser.me/api/portraits/men/71.jpg" alt="">
+                                        </div>
+                                        <div class="workspace-item-date">July 31, 2019</div>
+                                        <h4>Randall Hurley</h4>
+                                        <span class="workspace-sub-content">UXSEA Summit 2049</span>
+                                        <span class="workspace-sub-content">Manila to Singapore</span>
+                                    </div>
+                                    <div class="workspace-item-footer">
+                                        <span class="workspace-item-accept">Approve</span>
+                                        <span class="workspace-item-decline">Decline</span>
+                                    </div>
+                                </div>
+ 
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         

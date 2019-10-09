@@ -32,7 +32,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,ClickOutsideModule,PerfectScrollbarModule,BrowserAnimationsModule,SimpleNotificationsModule.forRoot()
+    AppRoutingModule,ClickOutsideModule,PerfectScrollbarModule,BrowserAnimationsModule,SimpleNotificationsModule.forRoot({
+      timeOut: 2000,
+      theClass: 'wfnotify',
+      showProgressBar: false,
+      pauseOnHover: true,
+      clickToClose: true,
+      clickIconToClose: true
+    })
   ],
   providers: [
     {
