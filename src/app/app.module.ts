@@ -9,12 +9,12 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent } from './components/common/sidebar/sidebar.component';
 import { WorkflowComponent } from './components/workflow/workflow.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { NewRequestModalComponent } from './components/workflow/new-request-modal/new-request-modal.component';
 import { WorkflowItemModalComponent } from './components/workflow/workflow-item-modal/workflow-item-modal.component';
-import { LoaderSvgComponent } from './loader-svg/loader-svg.component';
+import { LoaderSvgComponent } from './components/common/loader-svg/loader-svg.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true

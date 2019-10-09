@@ -54,22 +54,22 @@
     opacity: 0.5;
 }
 #appsidebar .sidemenu ul.menulist li.navitem .workspace-nav {
-    background: transparent url('../../assets/workspace-small.png') 0% 0% no-repeat padding-box;
+    background: transparent url('../../../../assets/workspace-small.png') 0% 0% no-repeat padding-box;
     background-position: center;
 
 }
 #appsidebar .sidemenu ul.menulist li.navitem .forms-nav {
-    background: transparent url('../../assets/forms-small.png') 0% 0% no-repeat padding-box;
+    background: transparent url('../../../../assets/forms-small.png') 0% 0% no-repeat padding-box;
     background-position: center;
 
 }
 #appsidebar .sidemenu ul.menulist li.navitem .workflow-nav {
-    background: transparent url('../../assets/workflows-small.png') 0% 0% no-repeat padding-box;
+    background: transparent url('../../../../assets/workflows-small.png') 0% 0% no-repeat padding-box;
     background-position: center;
 
 }
 #appsidebar .sidemenu ul.menulist li.navitem .tables-nav {
-    background: transparent url('../../assets/table-small.png') 0% 0% no-repeat padding-box;
+    background: transparent url('../../../../assets/table-small.png') 0% 0% no-repeat padding-box;
     background-position: center;
 
 }
