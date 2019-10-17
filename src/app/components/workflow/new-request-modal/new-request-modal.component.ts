@@ -1,5 +1,9 @@
 import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
-import {trigger,transition,style,animate} from '@angular/animations';
+import { DomSanitizer,SafeResourceUrl } from "@angular/platform-browser";
+// import {trigger,transition,style,animate} from '@angular/animations';
+import { ApiService } from "../../../services/api.service";
+import { FormPermission } from '../../../models/workflow.model';
+
 
 @Component({
   selector: 'new-request-modal',
@@ -25,22 +29,56 @@ import {trigger,transition,style,animate} from '@angular/animations';
 })
 export class NewRequestModalComponent implements OnInit {
   @Input('openModal') public openModal: boolean;
+  @Input('formPermission') public formPermission:Array<FormPermission>;
+  @Input('formPermissionIsLoading') public formPermissionIsLoading:boolean;
   @Output('closeModal') public closeModal:EventEmitter<boolean> = new EventEmitter<boolean>()
-  public travelRequest:boolean = false;
-  constructor() { }
+  public isNewWorkFlow:boolean = false;
+  public newWorkFlowSearch:string ="";
+  public selectedWorkFlow:any = {};
+  public formUrl:any = "";
+  public maximize:boolean;
+  constructor(private apiService: ApiService, private sanitizer: DomSanitizer) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   close() {
     this.openModal = false;
+    this.newWorkFlowSearch = "";
+    this.formUrl = "";
+    this.selectedWorkFlow = {};
     this.showTravelRequest("back");
     this.closeModal.emit(false);
   }
+  cancel() {
+    this.formUrl = "";
+    this.selectedWorkFlow = {};
+  }
 
   showTravelRequest(state:string) {
-    if(state == 'next') { this.travelRequest = true; }
-    else if(state == 'back') { this.travelRequest = false;}
-    else { this.travelRequest = false; }
+    if(state == 'next' && Object.keys(this.selectedWorkFlow).length>0) { 
+      this.isNewWorkFlow = true;
+      this.formPermissionIsLoading = true;
+      this.apiService.getRenderingUrl(this.selectedWorkFlow).subscribe((url:string)=>{
+        this.formUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        this.formPermissionIsLoading = false;
+      })
+
+    } else if(state == 'back') { this.isNewWorkFlow = false;}
+    else { this.isNewWorkFlow = false; }
+  }
+  isEmptyObject(selectedWorkFlow) {
+    return (selectedWorkFlow && (Object.keys(selectedWorkFlow).length === 0));
+  }
+  // new workflow list item onclick
+  public NewWorkFlowItemOnClick(permission) {
+    this.selectedWorkFlow = permission;
+    // this.apiService.getRenderingUrl(permission).subscribe((url:string)=>{
+    //   console.log(url)
+    //   this.formUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    // })
+  }
+  // maximise minimize modal window
+  public fitModal():void {
+    this.maximize = !this.maximize;
   }
 
 }

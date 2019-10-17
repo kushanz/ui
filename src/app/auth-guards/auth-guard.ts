@@ -4,7 +4,6 @@ import { ApiService } from '../services/api.service';
 import { DOCUMENT } from '@angular/common';
 import { GlobalVars } from '../services/globalvars.service';
 import { TranslateService } from '@ngx-translate/core';
-import { InboxComponent } from '../components/inbox/inbox.component';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
 import { NotificationHub } from '../services/notification-hub.service';
@@ -23,7 +22,6 @@ export class AuthGuardService implements CanActivate {
     @Inject(DOCUMENT) private document: any, private globalVars: GlobalVars, private translate: TranslateService, private notificationHub: NotificationHub, private globalEventsService: GlobalEventsService) {
   }
   async canActivate(): Promise<boolean> {
-
     console.log("AUTHGUARD HIT ", "Initialized " + this.initializedOnce)
     if (!this.initializedOnce) {
       await this.getBasePath();
@@ -57,7 +55,7 @@ export class AuthGuardService implements CanActivate {
           AuthGuardService.token = token;
           localStorage.setItem('userReferenceId', response.userReferenceId.toString());
           this.translate.setDefaultLang('en');
-          this.router.navigate(['inbox']);
+          // this.router.navigate(['workflow']);
 
           return true;
         });

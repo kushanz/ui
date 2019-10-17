@@ -1,7 +1,7 @@
 .modalOverlay {
     z-index: 1000;
     display: none;
-    padding-top: 100px;
+    /* padding-top: 100px; */
     position: fixed;
     left: 0;
     top: 0;
@@ -13,7 +13,7 @@
     animation: fadeModal 0.2s forwards;
     color: #707070;
 }
-.modalOverlay.show {display: block;}
+.modalOverlay.show {display: flex;}
 .modalContainer {
     border-radius: 10px;
     padding: 1em 2em;
@@ -21,7 +21,13 @@
     margin: auto;
     background-color: #fff;
     position: relative;
+    transition: .2s;
     animation: zoomModal 0.2s forwards;
+}
+.modalContainer.max {
+    width:100%;
+    height: 100%;
+    border-radius: unset;
 }
 /* .modalContainer.hide {
     animation: zoomModal 0.2s reverse;
@@ -32,7 +38,8 @@
     top: 0;
     border: 0;
     display: inline-block;
-    padding: 16px;
+    background: #fff;
+    z-index: 1000;
     vertical-align: middle;
     overflow: hidden;
     text-decoration: none;
@@ -44,6 +51,14 @@
 .modalContent {   
     display: block;
     overflow: hidden;
+    position: relative;
+    height: 420px;
+}
+.modalHeader {
+    position: relative;
+    background: #fff;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #dfe0e0;
 }
 .modalTitle {
     font-size: 20px;
@@ -64,6 +79,8 @@
 }
 .modalCatList {
     padding-top: 2rem;
+    overflow: hidden;
+    position: relative;
 }
 .modalCatList .modalCategory {
     border: 2px solid #D0D5DD;
@@ -100,8 +117,17 @@
     overflow: hidden;
 }
 .modalFooter {
-    float: right;
-    padding: 10px;
+    padding: 10px 0 0 0;
+}
+.footerBtns {
+    float:right;
+}
+.iframenewWorkFlow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
 }
 .modalNext,.modalCancel {
     padding: 5px 10px;
@@ -111,7 +137,18 @@
     cursor: pointer;
     padding-left: 3rem;
 }
+.disablebtn {color: #d1d1d1;cursor: default;}
 .hide { display: none; }
+.modalContainer.max .modalContent {
+    height:520px
+}
+.modalContainer.max perfect-scrollbar {
+    max-height: 430px !important;
+}
+.modalContainer.max .col-md-4 {
+    flex: 0 0 20%;   
+}
+.activebtn {color: yellowgreen;}
 @keyframes fadeModal { from{opacity: 0;} to{opacity: 1;} }
 @keyframes zoomModal { from{transform: scale(0.95);} to{transform: scale(1);} }
 
@@ -119,10 +156,16 @@
     .modalContainer {
         width: 500px;
     }
+    .modalContent {
+        height: 450px;
+    }
 }
 @media (max-width: 600px){
     .modalContainer {
         margin: 0 10px;
-        width: auto!important;
+        width: 100% !important;
+    }
+    .modalContent {
+        height: 450px;
     }
 }

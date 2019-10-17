@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from "../../services/api.service";
+
+// models
+import { InboxItem } from "../../models/inbox-item.model";
+import { FormPermission, FormAssignment } from '../../models/workflow.model';
 
 @Component({
   selector: 'Workflow',
@@ -6,8 +11,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workflow.component.css']
 })
 export class WorkflowComponent implements OnInit {
-  public inboxItemTypes: string[] = ['Received', 'Sent', 'Completed', 'TimeEscalated'];
-  public selectedItem: string = 'Received';
+  public inboxItemTypes: string[] = ['Pending', 'Sent', 'Completed', 'TimeEscalated'];
+  public selectedItem: string = 'Pending';
   public openNewRequestModal:boolean = false;
   public openItemModal:boolean = false;
   public isExpandSearch:boolean = false;
@@ -19,8 +24,13 @@ export class WorkflowComponent implements OnInit {
   public completed:boolean = false;
   public timeescalated:boolean = false;
 
+  public inboxItems: InboxItem[] = [];
 
-  constructor() { }
+
+  public formPermission: Array<FormPermission> = new Array<FormPermission>();
+  public formPermissionIsLoading:boolean;
+
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
   }
@@ -41,6 +51,7 @@ export class WorkflowComponent implements OnInit {
   // do open close new Requeat Modal
   doNewReqModal(e:boolean) {
     this.openNewRequestModal = e;
+    this.getFormAssignments();
   }
   // do open item wise modal
   doItemModal(e:boolean) {
@@ -70,6 +81,38 @@ export class WorkflowComponent implements OnInit {
   // select tab item
   tabitemClick(item:string) {
     this.selectedItem = item;
+    this.loadInboxItemsByType(item);
   }
+
+  // ------------load inbox items with filter----------------------
+  loadInboxItemsByType(type:any) {
+    this.apiService.getInboxList(type).subscribe((data:any) => {
+      this.inboxItems = data;
+      this.inboxItems.map((item:  InboxItem) => {
+        if( item.identityValues !== null){
+          item.identityValues = JSON.parse( item.identityValues.toString());
+        }
+      })
+    })
+  }
+
+  // get form assignments -- new workflow list items load
+  getFormAssignments() {
+    this.formPermissionIsLoading = true;
+    this.apiService.getFormAssignments().subscribe((result: Array<FormAssignment>) => {
+      if (result != null) {
+        this.formPermission = [];
+        result.forEach(form => {
+          if (form.formPermissions.length > 0 && form.formPermissions[0].id > 0) {
+            form.formPermissions.forEach(permission => {
+              this.formPermission.push(permission)
+            })
+          }
+        })
+      }
+      this.formPermissionIsLoading = false
+    })
+  }
+
 
 }

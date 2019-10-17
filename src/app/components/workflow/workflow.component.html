@@ -320,7 +320,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="filters">
-                                <li class="filteritem" [ngClass]="{'selected':selectedItem=='Received'}" (click)="tabitemClick('Received')">Received</li>
+                                <li class="filteritem" [ngClass]="{'selected':selectedItem=='Pending'}" (click)="tabitemClick('Pending')">Received</li>
                                 <li class="filteritem" [ngClass]="{'selected':selectedItem=='Sent'}" (click)="tabitemClick('Sent')">Sent</li>
                                 <li class="filteritem" [ngClass]="{'selected':selectedItem=='Completed'}" (click)="tabitemClick('Completed')">Completed</li>
                                 <li class="filteritem" [ngClass]="{'selected':selectedItem=='TimeEscalated'}" (click)="tabitemClick('TimeEscalated')">Time Scalated</li>
@@ -442,5 +442,10 @@
     </perfect-scrollbar>
 </div>
     <!-- new request modals -->
-    <new-request-modal [openModal]="openNewRequestModal" (closeModal)="doNewReqModal($event)" ></new-request-modal>
+    <new-request-modal 
+        [openModal]="openNewRequestModal" 
+        [formPermission]="formPermission" 
+        [formPermissionIsLoading]="formPermissionIsLoading" 
+        (closeModal)="doNewReqModal($event)" >
+    </new-request-modal>
     <workflow-item-modal [openModal]="openItemModal" (closeModal)="doItemModal($event)"></workflow-item-modal>
