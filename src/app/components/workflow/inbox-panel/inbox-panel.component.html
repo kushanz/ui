@@ -8,7 +8,7 @@
         </span>
         <loader-svg [show]="loader"></loader-svg>
 
-        <div class="swiper-container" [swiper]="slider_config" [(index)]="index">
+        <div class="swiper-container" [swiper]="slider_config" >
             <div class="swiper-wrapper">
               <div class="swiper-slide" *ngFor="let item of inboxItems">
                 <div class="swiper-item"> {{ item.id }}</div>

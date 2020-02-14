@@ -7,7 +7,7 @@
     <div class="headertitle" (click)="appmenu(true)">
         <span class="workflowicon"><img src="../../../../assets/workspace-small.png" alt=""></span>
         <span class="title">Workspace</span>
-        <div class="workflow-dropdown" [class.expand]='isAppMenu' (clickOutside)="appmenu(fasle)" [exclude]="'.headertitle'">
+        <div class="workflow-dropdown" [class.expand]='isAppMenu' (clickOutside)="appmenu(false)" [exclude]="'.headertitle'">
             <ul class="workflow-dropdownlist">
                 <li class="workflow-dropdown-item">
                     <span class="workflowicon"><img src="../../../../assets/workspace-small.png" alt=""></span>
@@ -231,7 +231,7 @@
                         </div>
                     </div>
                     <div class="advanceSearchFooter">
-                        <span class="advanceSearchReset" (click)="doSearchClear()">Reset</span>
+                        <span class="advanceSearchReset" (click)="doClearSearch()">Reset</span>
                         <span class="advanceSearchSearch" (click)="doAdvanceSearch()">Search</span>
                     </div>
                 </div>
@@ -264,7 +264,7 @@
             <img src="https://randomuser.me/api/portraits/women/85.jpg" alt="">
         </span>
         <span class="username">User Name</span>
-        <div class="user-dropdown" [class.show]="isUserMenu" (clickOutside)="usermenu(fasle)" [exclude]="'.wf-user'">
+        <div class="user-dropdown" [class.show]="isUserMenu" (clickOutside)="usermenu(false)" [exclude]="'.wf-user'">
             <ul class="user-dropdown-list">
                 <li class="user-dropdown-item">
                     <span>My Profile</span>
