@@ -14,7 +14,7 @@ export class InboxPanel implements OnInit {
   @Input() inboxItems:InboxItem[]
   @Input() loader:boolean
   @Output() closePanel:EventEmitter<boolean> = new EventEmitter<boolean>()
-  @ViewChild(SwiperDirective) directiveRef?: SwiperDirective;
+  @ViewChild(SwiperDirective,{ static: false }) directiveRef?: SwiperDirective;
 
   private pagination: SwiperPaginationInterface = {
     el: '.swiper-pagination',
