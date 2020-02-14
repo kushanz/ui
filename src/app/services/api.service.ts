@@ -65,7 +65,18 @@ export class ApiService {
   public getRenderingUrl(formPermission:FormPermission){
     return this.http.post(environment.basePath+'/api/FormAssignments/Render/',formPermission)
   }
-
+  public getWorkflowCards(type: string) {
+    return this.http.get(environment.basePath + '/api/inboxitems/GetCountByTpe/'+ type);
+  }
+  public getWorkflowCardsByKeyword(type:string,phrase:string){
+    return this.http.get(environment.basePath + '/api/InboxItems/NewSearch/'+type+'/Keyword/'+phrase);
+  }
+  public getWorkflowCardsByReference(type:string,reference:number){
+    return this.http.get(environment.basePath + '/api/InboxItems/NewSearch/'+type+'/Reference/'+reference);
+  }
+  public getInboxListNew(type:string,startRowIndex:number,perpage:number,workflowId:number) {
+    return this.http.get(environment.basePath + '/api/InboxItems/'+startRowIndex+'/'+type+'/'+workflowId+'/'+perpage);
+  }
 
   // for search
   public getAllProteusWorkflows(){
@@ -121,6 +132,13 @@ export class ApiService {
 
   public getSubWorkflowDetailsByWorkflowId(workflowId : number){
     return this.http.get(environment.basePath + "/api/dashboarddata/workflows/subworkflows/"+workflowId)
+  }
+  //  api list for new ui
+  public getWorkFlowList(type: string) {
+    return this.http.get(environment.basePath + '/api/inboxitems/GetCountByTpe/'+ type);
+  }
+  public getInboxListByWorkFlow(type:string,start:number,perpage:number,workflowId:number) {
+    return this.http.get(environment.basePath + '/api/InboxItems/'+start+'/'+type+'/'+workflowId+'/'+perpage);
   }
 }
 

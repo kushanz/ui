@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  basePath: "http://localhost:8768" ,
+  // basePath: "http://localhost:8768" ,
+  basePath: "https://zen.enadoc.com:8080/workspaceapi" ,
   statViewerHost:"http://localhost:9000/#",
 };
 

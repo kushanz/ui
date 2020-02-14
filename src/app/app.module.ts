@@ -7,14 +7,21 @@ import { ClickOutsideModule } from 'ng-click-outside';
 // filters
 import { wfSearchFilter } from './filters/newworkflow.filter';
 // scrollbar add
-import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+// import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { NgScrollbarModule,NG_SCROLLBAR_OPTIONS } from 'ngx-scrollbar';
 // add notification module
 import { SimpleNotificationsModule } from 'angular2-notifications';
+
+// swiper moduel
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/common/sidebar/sidebar.component';
 import { LoaderSvgComponent } from './components/common/loader-svg/loader-svg.component';
+import { LoaderErrorComponent } from './components/common/loader-error/loader-error.component';
 
 // workflow module
 import { WorkflowComponent } from './components/workflow/workflow.component';
@@ -34,10 +41,11 @@ import { GlobalVars } from './services/globalvars.service';
 import { TrackService } from './services/track.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { InboxPanel } from './components/workflow/inbox-panel/inbox-panel.component';
 
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  wheelPropagation: true,
-  suppressScrollX: true
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 4,
 };
 
 @NgModule({
@@ -49,7 +57,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NewRequestModalComponent,
     WorkflowItemModalComponent,
     LoaderSvgComponent,
-    wfSearchFilter
+    wfSearchFilter,
+    LoaderErrorComponent,
+    InboxPanel
   ],
   imports: [
     FormsModule,
@@ -63,14 +73,16 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
           deps: [HttpClient]
       }
     }),
-    AppRoutingModule,ClickOutsideModule,PerfectScrollbarModule,BrowserAnimationsModule,SimpleNotificationsModule.forRoot({
+    AppRoutingModule,ClickOutsideModule,BrowserAnimationsModule,SimpleNotificationsModule.forRoot({
       timeOut: 2000,
       theClass: 'wfnotify',
       showProgressBar: false,
       pauseOnHover: true,
       clickToClose: true,
       clickIconToClose: true
-    })
+    }),
+    NgScrollbarModule,
+    SwiperModule
   ],
   providers: [
     ApiService,
@@ -86,8 +98,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       multi: true
     },
     {
-      provide: PERFECT_SCROLLBAR_CONFIG,
-      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
     }
   ],
   bootstrap: [AppComponent]

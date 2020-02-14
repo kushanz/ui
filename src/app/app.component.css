@@ -14,7 +14,7 @@
     width: auto;
     height: 100%;
     overflow: hidden;
-    margin-left: 70px;
+    /* margin-left: 70px; */
     background: #F8F7FB;
     position: relative;
     transition: all .3s ease-in-out,-webkit-transform .3s ease-in-out;
@@ -29,11 +29,11 @@
     cursor: pointer;
     z-index: 1;
 }
-@media screen and (max-width: 576px) {
+/* @media screen and (max-width: 576px) {
       #applayout #appmain {
         margin-left: 0px;
     }
     #applayout .togglebtn {
         display: block;
     }
-}
+} */

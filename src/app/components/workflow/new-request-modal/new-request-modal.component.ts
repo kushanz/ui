@@ -1,4 +1,5 @@
 import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
+import {trigger,transition,style,animate,query,group} from '@angular/animations';
 import { DomSanitizer,SafeResourceUrl } from "@angular/platform-browser";
 // import {trigger,transition,style,animate} from '@angular/animations';
 import { ApiService } from "../../../services/api.service";
@@ -8,12 +9,29 @@ import { FormPermission } from '../../../models/workflow.model';
 @Component({
   selector: 'new-request-modal',
   templateUrl: './new-request-modal.component.html',
-  styleUrls: ['./new-request-modal.component.css'],
+  styleUrls: ['./new-request-modal.component.css']
   // animations:[
-  //   trigger('modalAnimate', [
-  //     transition('void=>*',[style({opacity:0,transform:'scale(0.9)'}),animate(500)]),
-  //     transition('*=>void',[animate(500,style({opacity:0,transform:'scale(0.9)'}))])
+  //   trigger('delete-fade', [
+  //     transition('void=>*',[style({opacity:0,transform:'translateY(10px)'}),animate(400)]),
+  //     transition('*=>void',[animate(400,style({opacity:0,transform:'translateY(30px)'}))])
   //   ])
+  // ]
+  // animations:[
+    // trigger('modalAnimate', [
+    //   transition('void=>*',[style({opacity:0,transform:'scale(0.9)'}),animate(500)]),
+    //   transition('*=>void',[animate(500,style({opacity:0,transform:'scale(0.9)'}))])
+    // ]),
+  //   trigger(
+  //         'fadeAnimation', [
+  //           transition( ':enter',[style({ opacity: 0 }), animate('.2s ease-out', style({ opacity: 1 })),query('.modalContainer',[
+  //             style({opacity:0,transform:'scale(0.9)'}),
+  //             group([animate(300,style({opacity:1,transform:'scale(1)'}))])
+  //           ]) ] ),
+  //           transition( ':leave',[style({ opacity: 1 }),animate('.2s ease-in',style({ opacity: 0 })),query('.modalContainer',[
+  //             style({opacity:1,transform:'scale(1)'}),
+  //             group([animate(300,style({opacity:0,transform:'scale(0.9)'}))])
+  //           ]) ] )
+  //         ])
   // ]
   // animations: [
   //   trigger(
@@ -77,7 +95,7 @@ export class NewRequestModalComponent implements OnInit {
     // })
   }
   // maximise minimize modal window
-  public fitModal():void {
+  public resizeModal():void {
     this.maximize = !this.maximize;
   }
 

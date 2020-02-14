@@ -25,3 +25,15 @@ export class IdentificationValue{
     label:string;
     value: string;
 }
+
+export class workflowModal {
+    itemCount:number;
+    workflowId:number;
+    workflowName:string;
+}
+export class workflowCountModal{
+    inboxItems: InboxItem[];
+    workflowName: string;
+    workflowId: number;
+    itemCount: number;
+}

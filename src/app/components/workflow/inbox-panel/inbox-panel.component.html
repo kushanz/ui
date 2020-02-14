@@ -1,0 +1,28 @@
+<!-- <div class="modalOverlay" [class.open]="openPanel"> -->
+    <div class="modalContainer" [class.open]="openPanel" >
+        <span class="closepanel" (click)="close()" *ngIf="openPanel">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 10 10" style="enable-background:new 0 0 10 10;" xml:space="preserve">
+                <style type="text/css"> .st0{fill:#FFFFFF;stroke:#ffffff;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;} </style>
+                <path class="st0" d="M1.1,1.1l7.8,7.7 M8.9,1.1L1.1,8.9"/>
+            </svg>
+        </span>
+        <loader-svg [show]="loader"></loader-svg>
+
+        <div class="swiper-container" [swiper]="slider_config" [(index)]="index">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" *ngFor="let item of inboxItems">
+                <div class="swiper-item"> {{ item.id }}</div>
+              </div>
+            </div>
+             <div class="swiper-button-prev"></div>
+             <div class="swiper-button-next"></div>
+             <div class="swiper-pagination"></div>
+          </div> 
+
+          <!-- <swiper [config]="slider_config" [(index)]="index">
+            <div  *ngFor="let item of inboxItems">
+                <div class="swiper-item"> {{ item.id }}</div>
+              </div>
+          </swiper> -->
+    </div>
+<!-- </div> -->

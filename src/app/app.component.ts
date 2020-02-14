@@ -6,15 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public isMobile:boolean = false;
+  // public isMobile:boolean = false;
 
   constructor() { }
 
   ngOnInit():void {
 
   }
-  doSidebar(e:boolean):void {
-    this.isMobile = e;
-  }
+  // doSidebar(e:boolean):void {
+  //   this.isMobile = e;
+  // }
   
 }

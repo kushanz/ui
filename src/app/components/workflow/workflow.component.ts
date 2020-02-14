@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../services/api.service";
 
 // models
-import { InboxItem } from "../../models/inbox-item.model";
+import { InboxItem, workflowModal, workflowCountModal } from "../../models/inbox-item.model";
 import { FormPermission, FormAssignment } from '../../models/workflow.model';
 
 @Component({
@@ -10,9 +10,13 @@ import { FormPermission, FormAssignment } from '../../models/workflow.model';
   templateUrl: './workflow.component.html',
   styleUrls: ['./workflow.component.css']
 })
+
+
 export class WorkflowComponent implements OnInit {
-  public inboxItemTypes: string[] = ['Pending', 'Sent', 'Completed', 'TimeEscalated'];
-  public selectedItem: string = 'Pending';
+  public isAppMenu:boolean = false;
+  public isUserMenu:boolean = false;
+  public inboxItemTypes: string[] = ['All','Pending', 'Completed', 'TimeEscalated'];
+  public selectedType: string;
   public openNewRequestModal:boolean = false;
   public openItemModal:boolean = false;
   public isExpandSearch:boolean = false;
@@ -23,9 +27,17 @@ export class WorkflowComponent implements OnInit {
   public sent:boolean = false;
   public completed:boolean = false;
   public timeescalated:boolean = false;
+  public isLoadingwf: boolean = false;
+  public isErrorLoading:boolean = false;
+  public isOpenPanel:boolean = false;
+  public isInboxLoader:boolean;
 
+  public workflowCards:workflowModal[] = [];
+  public activeWorkFlowCard:workflowModal;
   public inboxItems: InboxItem[] = [];
 
+  public searchPhrase:string = ""
+  public referanceNo: any;
 
   public formPermission: Array<FormPermission> = new Array<FormPermission>();
   public formPermissionIsLoading:boolean;
@@ -33,6 +45,22 @@ export class WorkflowComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.selectedType = 'Pending';
+    this.loadWorkFlows();
+  }
+  appmenu(state:boolean) {
+    if(state) {
+      this.isAppMenu = !this.isAppMenu;
+    } else {
+      this.isAppMenu = false;
+    }
+  }
+  usermenu(state:boolean) {
+    if(state) {
+      this.isUserMenu = !this.isUserMenu
+    } else {
+      this.isUserMenu = false;
+    }
   }
   expandSeach(state) {
     this.isExpandSearch = state;
@@ -72,27 +100,66 @@ export class WorkflowComponent implements OnInit {
   }
   doSearch () {
     // search Action Goes Here
-    this.isOpenSearchPanel = true;
+    this.isErrorLoading = false
+    if(this.searchPhrase != "") {
+      this.isLoadingwf = true
+      this.apiService.getWorkflowCardsByKeyword(this.selectedType,this.searchPhrase).subscribe((data: Array<workflowModal>) => {
+        this.workflowCards = data
+        this.isLoadingwf = false
+        this.expandSeach(false)
+      })
+    } else {
+      this.isLoadingwf = true
+      this.apiService.getWorkflowCards(this.selectedType).subscribe((data: Array<workflowModal>) => {
+        this.workflowCards = data
+        this.isLoadingwf = false
+        this.expandSeach(false)
+      })
+    }
   }
-  doSearchClear () {
+  doAdvanceSearch () {
+    this.isErrorLoading = false
+    if(this.referanceNo != "") {
+      this.isLoadingwf = true
+      this.apiService.getWorkflowCardsByReference(this.selectedType,this.referanceNo).subscribe((data:workflowCountModal) => {
+        this.workflowCards = [{itemCount:data.itemCount,workflowId:data.workflowId,workflowName:data.workflowName} as workflowModal]
+        this.isLoadingwf = false
+      },error => {
+        this.isErrorLoading = true
+        this.expandSeach(false)
+      })
+    }
+  }
+  doClearSearchPhrase () {
+    this.searchPhrase = ""
+  }
+  doClearSearch () {
     // do clear all search values
     this.isOpenSearchPanel = false;
   }
   // select tab item
-  tabitemClick(item:string) {
-    this.selectedItem = item;
-    this.loadInboxItemsByType(item);
+  tabitemClick(type:string) {
+    this.selectedType = type;
+    this.loadWorkFlows();
   }
 
   // ------------load inbox items with filter----------------------
-  loadInboxItemsByType(type:any) {
-    this.apiService.getInboxList(type).subscribe((data:any) => {
-      this.inboxItems = data;
-      this.inboxItems.map((item:  InboxItem) => {
-        if( item.identityValues !== null){
-          item.identityValues = JSON.parse( item.identityValues.toString());
-        }
-      })
+  // loadInboxItemsByType(type:any) {
+  //   this.apiService.getInboxList(type).subscribe((data:any) => {
+  //     this.inboxItems = data;
+  //     this.inboxItems.map((item:  InboxItem) => {
+  //       if( item.identityValues !== null){
+  //         item.identityValues = JSON.parse( item.identityValues.toString());
+  //       }
+  //     })
+  //   })
+  // }
+  // load workflows
+  loadWorkFlows() {
+    this.isLoadingwf = true
+    this.apiService.getWorkFlowList(this.selectedType).subscribe((data: any) => {
+      this.workflowCards = data
+      this.isLoadingwf = false
     })
   }
 
@@ -114,5 +181,17 @@ export class WorkflowComponent implements OnInit {
     })
   }
 
-
+  loadInboxItems(card:workflowModal) {
+    this.isOpenPanel = true
+    this.isInboxLoader = true
+    if(card.workflowId) {
+      this.apiService.getInboxListNew(this.selectedType,0,100,card.workflowId).subscribe((data:any) => {
+        this.inboxItems = data
+        this.isInboxLoader = false
+      })
+    }
+  }
+  closePanel() {
+    this.isOpenPanel = false;
+  }
 }

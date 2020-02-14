@@ -4,27 +4,46 @@
     <!-- <div class="togglebtn" (click)="toggleSidebar()">
         <i class="fa fa-th-list" aria-hidden="true"></i>
     </div> -->
-    <div class="headertitle">
-        <span>Dashboard</span>
+    <div class="headertitle" (click)="appmenu(true)">
+        <span class="workflowicon"><img src="../../../../assets/workspace-small.png" alt=""></span>
+        <span class="title">Workspace</span>
+        <div class="workflow-dropdown" [class.expand]='isAppMenu' (clickOutside)="appmenu(fasle)" [exclude]="'.headertitle'">
+            <ul class="workflow-dropdownlist">
+                <li class="workflow-dropdown-item">
+                    <span class="workflowicon"><img src="../../../../assets/workspace-small.png" alt=""></span>
+                    <span>Workspace</span>
+                </li>
+                <li class="workflow-dropdown-item">
+                    <span class="workflowicon"><img src="../../../../assets/forms-small.png" alt=""></span>
+                    <span>Forms</span>
+                </li>
+                <li class="workflow-dropdown-item">
+                    <span class="workflowicon"><img src="../../../../assets/workflows-small.png" alt=""></span>
+                    <span>Workflow</span>
+                </li>
+                <li class="workflow-dropdown-item">
+                    <span class="workflowicon"><img src="../../../../assets/table-small.png" alt=""></span>
+                    <span>Tables</span>
+                </li>
+            </ul>
+        </div>
     </div>
+    <!-- seachbox  -->
     <div class="searchbox" [ngClass]="{'expand-search':isExpandSearch}" (clickOutside)="expandSeach(false)">
         <span class="searchicon">
             <svg xmlns="http://www.w3.org/2000/svg" width="14.45" height="14.967" viewBox="0 0 14.45 14.967">
-                <defs>
-                    <style>
-                        .a {
-                            fill: #4f7cff;
-                        }
-                    </style>
-                </defs>
-                <path class="a"
-                    d="M15.214,13.632l-3.562-3.7a6.04,6.04,0,1,0-4.625,2.158,5.978,5.978,0,0,0,3.462-1.093l3.589,3.733a.788.788,0,1,0,1.136-1.093ZM7.027,1.576A4.466,4.466,0,1,1,2.56,6.043,4.471,4.471,0,0,1,7.027,1.576Z"
-                    transform="translate(-0.984 0)" />
+                <defs><style>.a {fill: #4f7cff;}</style></defs>
+                <path class="a" d="M15.214,13.632l-3.562-3.7a6.04,6.04,0,1,0-4.625,2.158,5.978,5.978,0,0,0,3.462-1.093l3.589,3.733a.788.788,0,1,0,1.136-1.093ZM7.027,1.576A4.466,4.466,0,1,1,2.56,6.043,4.471,4.471,0,0,1,7.027,1.576Z" transform="translate(-0.984 0)" />
             </svg>
         </span>
-        <input type="text" id="mainsearchinput" placeholder="Search" (focus)="expandSeach(true)" autocomplete="off">
+        <input type="text" id="mainsearchinput" placeholder="Search" [(ngModel)]="searchPhrase" (focus)="expandSeach(true)" (keyup.enter)="doSearch()" autocomplete="off">
+        <span class="clearsearch" *ngIf="searchPhrase != ''" (click)="doClearSearchPhrase()">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 10 10" style="enable-background:new 0 0 10 10;" xml:space="preserve">
+                <style type="text/css"> .st0{stroke:#4f7cff;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;} </style>
+                <path class="st0" d="M1.1,1.1l7.8,7.7 M8.9,1.1L1.1,8.9"/></svg>
+            </span>
         <span class="dropdown" (click)="expandSearchToggle()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="11.125" height="6.342" viewBox="0 0 11.125 6.342">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="11.125" height="6.342" viewBox="0 0 11.125 6.342">
                 <defs>
                     <style>
                         .a {
@@ -36,7 +55,7 @@
                     <path class="a"
                         d="M5.563,103.482a.777.777,0,0,1-.551-.228L.229,98.47a.779.779,0,0,1,1.1-1.1L5.563,101.6,9.8,97.369a.779.779,0,0,1,1.1,1.1l-4.784,4.784A.777.777,0,0,1,5.563,103.482Z" />
                 </g>
-            </svg>
+            </svg> -->
         </span>
         <span class="allbtn">All</span>
         <div class="search-content">
@@ -207,13 +226,13 @@
                         <div class="col-md-3"><span class="advanceSearchLabel">Referance</span></div>
                         <div class="col-md-7">
                             <div class="miniInputGroup">
-                                <input type="text" class="miniFormControl">
+                                <input type="text" class="miniFormControl" [(ngModel)]="referanceNo">
                             </div>
                         </div>
                     </div>
                     <div class="advanceSearchFooter">
                         <span class="advanceSearchReset" (click)="doSearchClear()">Reset</span>
-                        <span class="advanceSearchSearch" (click)="doSearch()">Search</span>
+                        <span class="advanceSearchSearch" (click)="doAdvanceSearch()">Search</span>
                     </div>
                 </div>
             </div>
@@ -240,12 +259,36 @@
             <span class="newrequesttext">New Request</span>
         </button>
     </div>
+    <div class="wf-user" (click)="usermenu(true)">
+        <span class="user-image">
+            <img src="https://randomuser.me/api/portraits/women/85.jpg" alt="">
+        </span>
+        <span class="username">User Name</span>
+        <div class="user-dropdown" [class.show]="isUserMenu" (clickOutside)="usermenu(fasle)" [exclude]="'.wf-user'">
+            <ul class="user-dropdown-list">
+                <li class="user-dropdown-item">
+                    <span>My Profile</span>
+                </li>
+                <li class="user-dropdown-item">
+                    <span>Settings</span>
+                </li>
+                <li class="user-dropdown-item">
+                    <span>Help</span>
+                </li>
+                <li class="user-dropdown-item">
+                    <span>Logout</span>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
 
  <!-- content area -->
  
 <div id="appcontent">
-        <perfect-scrollbar>
+    <loader-svg [show]="isLoadingwf"></loader-svg>
+    <loader-error [loaderror]="isErrorLoading"></loader-error>
+        <ng-scrollbar appearance="standard" visibility="hover">
             <div class="container" style="max-width: 100%;">
                 <div class="searchpanel" *ngIf="isOpenSearchPanel">
                     <div class="row">
@@ -320,10 +363,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="filters">
-                                <li class="filteritem" [ngClass]="{'selected':selectedItem=='Pending'}" (click)="tabitemClick('Pending')">Received</li>
-                                <li class="filteritem" [ngClass]="{'selected':selectedItem=='Sent'}" (click)="tabitemClick('Sent')">Sent</li>
-                                <li class="filteritem" [ngClass]="{'selected':selectedItem=='Completed'}" (click)="tabitemClick('Completed')">Completed</li>
-                                <li class="filteritem" [ngClass]="{'selected':selectedItem=='TimeEscalated'}" (click)="tabitemClick('TimeEscalated')">Time Scalated</li>
+                                <li class="filteritem" [ngClass]="{'selected':selectedType=='All'}" (click)="tabitemClick('All')">All</li>
+                                <li class="filteritem" [ngClass]="{'selected':selectedType=='Pending'}" (click)="tabitemClick('Pending')">Pending</li>
+                                <li class="filteritem" [ngClass]="{'selected':selectedType=='Completed'}" (click)="tabitemClick('Completed')">Completed</li>
+                                <li class="filteritem" [ngClass]="{'selected':selectedType=='TimeEscalated'}" (click)="tabitemClick('TimeEscalated')">Time Scalated</li>
                             </ul>
                             <div class="sortbutton pull-right">
                                 <select name="" id="" class="miniFormControl">
@@ -333,114 +376,85 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="workspace-wrapper">
-                            <div class="workspace-listheader" (click)="toggleWorkspaceList('travel')">
-                                <h4 class="workspace-listheader-title">Travel</h4>
-                                <span class="workspace-listheader-notify">4</span>
+                <div class="cardpanel">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="workspace-wrapper">
+                                <div class="workspace-listheader" (click)="toggleWorkspaceList('travel')" [ngClass]="{'activecard':openWorkspaceList==='travel'}">
+                                    <h4 class="workspace-listheader-title">Travel</h4>
+                                    <span class="workspace-listheader-notify">4</span>
+                                </div>
+                                <div class="workspace-list" [ngClass]="{'expand':openWorkspaceList==='travel'}">
+                                    <div class="workspace-item">
+                                        <div class="workspace-item-content" (click)="doItemModal(true)">
+                                            <div class="workspace-item-user">
+                                                <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="">
+                                            </div>
+                                            <div class="workspace-item-date">July 31, 2019</div>
+                                            <h4>Randall Hurley</h4>
+                                            <span class="workspace-sub-content">UXSEA Summit 2049</span>
+                                            <span class="workspace-sub-content">Manila to Singapore</span>
+                                        </div>
+                                        <div class="workspace-item-footer">
+                                            <span class="workspace-item-accept">Approve</span>
+                                            <span class="workspace-item-decline">Decline</span>
+                                        </div>
+                                    </div>
+                                    <div class="workspace-item">
+                                        <div class="workspace-item-content">
+                                            <div class="workspace-item-user">
+                                                <img src="https://randomuser.me/api/portraits/men/71.jpg" alt="">
+                                            </div>
+                                            <div class="workspace-item-date">July 31, 2019</div>
+                                            <h4>Randall Hurley</h4>
+                                            <span class="workspace-sub-content">UXSEA Summit 2049</span>
+                                            <span class="workspace-sub-content">Manila to Singapore</span>
+                                        </div>
+                                        <div class="workspace-item-footer">
+                                            <span class="workspace-item-accept">Approve</span>
+                                            <span class="workspace-item-decline">Decline</span>
+                                        </div>
+                                    </div>
+                                    <div class="workspace-item">
+                                        <div class="workspace-item-content">
+                                            <div class="workspace-item-user">
+                                                <img src="https://randomuser.me/api/portraits/men/51.jpg" alt="">
+                                            </div>
+                                            <div class="workspace-item-date">July 31, 2019</div>
+                                            <h4>Randall Hurley</h4>
+                                            <span class="workspace-sub-content">UXSEA Summit 2049</span>
+                                            <span class="workspace-sub-content">Manila to Singapore</span>
+                                        </div>
+                                        <div class="workspace-item-footer">
+                                            <span class="workspace-item-accept">Approve</span>
+                                            <span class="workspace-item-decline">Decline</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="workspace-list" [ngClass]="{'expand':openWorkspaceList==='travel'}">
-                                <div class="workspace-item">
-                                    <div class="workspace-item-content" (click)="doItemModal(true)">
-                                        <div class="workspace-item-user">
-                                            <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="">
-                                        </div>
-                                        <div class="workspace-item-date">July 31, 2019</div>
-                                        <h4>Randall Hurley</h4>
-                                        <span class="workspace-sub-content">UXSEA Summit 2049</span>
-                                        <span class="workspace-sub-content">Manila to Singapore</span>
-                                    </div>
-                                    <div class="workspace-item-footer">
-                                        <span class="workspace-item-accept">Approve</span>
-                                        <span class="workspace-item-decline">Decline</span>
-                                    </div>
-                                </div>
-                                <div class="workspace-item">
-                                    <div class="workspace-item-content">
-                                        <div class="workspace-item-user">
-                                            <img src="https://randomuser.me/api/portraits/men/71.jpg" alt="">
-                                        </div>
-                                        <div class="workspace-item-date">July 31, 2019</div>
-                                        <h4>Randall Hurley</h4>
-                                        <span class="workspace-sub-content">UXSEA Summit 2049</span>
-                                        <span class="workspace-sub-content">Manila to Singapore</span>
-                                    </div>
-                                    <div class="workspace-item-footer">
-                                        <span class="workspace-item-accept">Approve</span>
-                                        <span class="workspace-item-decline">Decline</span>
-                                    </div>
-                                </div>
-                                <div class="workspace-item">
-                                    <div class="workspace-item-content">
-                                        <div class="workspace-item-user">
-                                            <img src="https://randomuser.me/api/portraits/men/51.jpg" alt="">
-                                        </div>
-                                        <div class="workspace-item-date">July 31, 2019</div>
-                                        <h4>Randall Hurley</h4>
-                                        <span class="workspace-sub-content">UXSEA Summit 2049</span>
-                                        <span class="workspace-sub-content">Manila to Singapore</span>
-                                    </div>
-                                    <div class="workspace-item-footer">
-                                        <span class="workspace-item-accept">Approve</span>
-                                        <span class="workspace-item-decline">Decline</span>
-                                    </div>
+                        </div>
+
+                        <div class="col-md-3" *ngFor="let wfcard of workflowCards" (click)="loadInboxItems(wfcard)">
+                            <div class="workspace-wrapper">
+                                <div class="workspace-listheader">
+                                    <h4 class="workspace-listheader-title">{{wfcard.workflowName}}</h4>
+                                    <h6 class="instance-id"></h6>
+                                    <span class="workspace-listheader-notify">{{wfcard.itemCount}}</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="workspace-wrapper">
-                            <div class="workspace-listheader" (click)="toggleWorkspaceList('leave')">
-                                <h4 class="workspace-listheader-title">Travel</h4>
-                                <span class="workspace-listheader-notify">2</span>
-                            </div>
-                            <div class="workspace-list" [ngClass]="{'expand':openWorkspaceList==='leave'}">
-                                <div class="workspace-item">
-                                    <div class="workspace-item-content" (click)="doItemModal(true)">
-                                        <div class="workspace-item-user">
-                                            <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="">
-                                        </div>
-                                        <div class="workspace-item-date">July 31, 2019</div>
-                                        <h4>Randall Hurley</h4>
-                                        <span class="workspace-sub-content">UXSEA Summit 2049</span>
-                                        <span class="workspace-sub-content">Manila to Singapore</span>
-                                    </div>
-                                    <div class="workspace-item-footer">
-                                        <span class="workspace-item-accept">Approve</span>
-                                        <span class="workspace-item-decline">Decline</span>
-                                    </div>
-                                </div>
-                                <div class="workspace-item">
-                                    <div class="workspace-item-content">
-                                        <div class="workspace-item-user">
-                                            <img src="https://randomuser.me/api/portraits/men/71.jpg" alt="">
-                                        </div>
-                                        <div class="workspace-item-date">July 31, 2019</div>
-                                        <h4>Randall Hurley</h4>
-                                        <span class="workspace-sub-content">UXSEA Summit 2049</span>
-                                        <span class="workspace-sub-content">Manila to Singapore</span>
-                                    </div>
-                                    <div class="workspace-item-footer">
-                                        <span class="workspace-item-accept">Approve</span>
-                                        <span class="workspace-item-decline">Decline</span>
-                                    </div>
-                                </div>
- 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        
-                    </div>
-                    <div class="col-md-3">
-                        
                     </div>
                 </div>
             <loader-svg [show]="false"></loader-svg>
         </div>
-    </perfect-scrollbar>
+    </ng-scrollbar>
 </div>
+<!-- inboc item load modal -->
+<inbox-panel 
+    [openPanel]="isOpenPanel"
+    [inboxItems]="inboxItems"
+    [loader] = "isInboxLoader"
+    (closePanel)="closePanel()"></inbox-panel>
     <!-- new request modals -->
     <new-request-modal 
         [openModal]="openNewRequestModal" 

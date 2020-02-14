@@ -1,6 +1,6 @@
-<div class="modalOverlay show"  *ngIf="openModal" >
-    <div class="modalContainer" [ngClass]="{'max':maximize}">
-            <div class="row modalHeader" (dblclick)="fitModal()" >
+<div class="modalOverlay show"  *ngIf="openModal">
+    <div class="modalContainer" [ngClass]="{'maximize':maximize}" >
+            <div class="row modalHeader" (dblclick)="resizeModal()" >
                 <div class="col-12">
                     <h4 class="modalTitle">Title Goes Here</h4>
                     <span class="modalClose" (click)="close()">
@@ -22,20 +22,22 @@
                         </div>
                     </div>
                 </div> -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="formSearch">
-                            <span class="formSearchIcon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14.45" height="14.967" viewBox="0 0 14.45 14.967"> <defs> <style>.a { fill: #99a2ad;}</style> </defs> <path class="a" d="M15.214,13.632l-3.562-3.7a6.04,6.04,0,1,0-4.625,2.158,5.978,5.978,0,0,0,3.462-1.093l3.589,3.733a.788.788,0,1,0,1.136-1.093ZM7.027,1.576A4.466,4.466,0,1,1,2.56,6.043,4.471,4.471,0,0,1,7.027,1.576Z" transform="translate(-0.984 0)" /></svg>
-                            </span>
-                            <input type="text" class="formControl" placeholder="Search" [(ngModel)]="newWorkFlowSearch">
+                <div class="modalSearch">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="formSearch">
+                                <span class="formSearchIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.45" height="14.967" viewBox="0 0 14.45 14.967"> <defs> <style>.a { fill: #99a2ad;}</style> </defs> <path class="a" d="M15.214,13.632l-3.562-3.7a6.04,6.04,0,1,0-4.625,2.158,5.978,5.978,0,0,0,3.462-1.093l3.589,3.733a.788.788,0,1,0,1.136-1.093ZM7.027,1.576A4.466,4.466,0,1,1,2.56,6.043,4.471,4.471,0,0,1,7.027,1.576Z" transform="translate(-0.984 0)" /></svg>
+                                </span>
+                                <input type="text" class="formControl" placeholder="Search" [(ngModel)]="newWorkFlowSearch">
+                            </div>
+    
                         </div>
-
+                        <div class="col-md-6"></div>
                     </div>
-                    <div class="col-md-6"></div>
                 </div>
                 <div class="modalCatList"> 
-                    <perfect-scrollbar [autoPropagation]="true" [config]="{scrollXMarginOffset:15}" style="max-height: 340px;">
+                    <ng-scrollbar appearance="standard" visibility="hover" position>
                         <div class="row" *ngIf="!formPermissionIsLoading" >
                             <div class="col-sm-6 col-md-4" *ngFor="let permission of formPermission |  wfSearchFilter:'name':newWorkFlowSearch">
                                 <div class="modalCategory" [ngClass]="{'selected': selectedWorkFlow == permission}" (click)="NewWorkFlowItemOnClick(permission)">
@@ -107,7 +109,7 @@
                                 </div>
                             </div> -->
                         </div>
-                    </perfect-scrollbar>
+                    </ng-scrollbar>
                 </div>
             </div>
             <!-- <div id="isNewWorkFlow" *ngIf="isNewWorkFlow==true"> -->
@@ -120,16 +122,15 @@
                    <iframe *ngIf="isNewWorkFlow" id="iframenewWorkFlow" [src]="formUrl" frameborder="0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
                 <!-- </perfect-scrollbar> -->
             <!-- </div> -->
-            
         </div>
         <div class="row modalFooter" style="background: #fff;border-top: 1px solid #dfe0e0;">
             <div class="col-12">
                 <div class="footerBtns">
                     <span class="modalNext" (click)="showTravelRequest('next')" [ngClass]="{'activebtn': !isEmptyObject(selectedWorkFlow),'disablebtn':isEmptyObject(selectedWorkFlow)}"
                         *ngIf="isNewWorkFlow==false">Next</span>
-                    <span class="modalNext" (click)="showTravelRequest('back')"
-                        *ngIf="isNewWorkFlow==true">Back</span>
-                    <span class="modalCancel" (click)="cancel()">Cancel</span>
+                    <span class="modalNext" (click)="showTravelRequest('back')" *ngIf="isNewWorkFlow==true">Back</span>
+                    <span *ngIf="isNewWorkFlow==true" class="modalCancel" (click)="cancel()">Cancel</span>
+                    <span *ngIf="isNewWorkFlow==false" class="modalCancel" (click)="close()">Close</span>
                 </div>
             </div>
         </div>
