@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="modalCatList"> 
-                    <ng-scrollbar appearance="standard" visibility="hover" position>
+                    <ng-scrollbar appearance="standard" visibility="hover" compact="false">
                         <div class="row" *ngIf="!formPermissionIsLoading" >
                             <div class="col-sm-6 col-md-4" *ngFor="let permission of formPermission |  wfSearchFilter:'name':newWorkFlowSearch">
                                 <div class="modalCategory" [ngClass]="{'selected': selectedWorkFlow == permission}" (click)="NewWorkFlowItemOnClick(permission)">

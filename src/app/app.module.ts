@@ -17,6 +17,9 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
+// masonry moule
+import { NgxMasonryModule } from 'ngx-masonry';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/common/sidebar/sidebar.component';
@@ -42,6 +45,7 @@ import { TrackService } from './services/track.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { InboxPanel } from './components/workflow/inbox-panel/inbox-panel.component';
+import { MasnoryPanelComponent } from './components/workflow/masnory-panel/masnory-panel.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -59,7 +63,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     LoaderSvgComponent,
     wfSearchFilter,
     LoaderErrorComponent,
-    InboxPanel
+    InboxPanel,
+    MasnoryPanelComponent,
   ],
   imports: [
     FormsModule,
@@ -82,7 +87,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
       clickIconToClose: true
     }),
     NgScrollbarModule,
-    SwiperModule
+    SwiperModule,
+    NgxMasonryModule
   ],
   providers: [
     ApiService,

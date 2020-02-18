@@ -288,7 +288,7 @@
 <div id="appcontent">
     <loader-svg [show]="isLoadingwf"></loader-svg>
     <loader-error [loaderror]="isErrorLoading"></loader-error>
-        <ng-scrollbar appearance="standard" visibility="hover">
+        <ng-scrollbar appearance="standard" visibility="hover" compact="false">
             <div class="container" style="max-width: 100%;">
                 <div class="searchpanel" *ngIf="isOpenSearchPanel">
                     <div class="row">
@@ -434,8 +434,8 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3" *ngFor="let wfcard of workflowCards" (click)="loadInboxItems(wfcard)">
-                            <div class="workspace-wrapper">
+                        <div class="col-md-3" *ngFor="let wfcard of workflowCards" >
+                            <div class="workspace-wrapper" (click)="loadInboxItems(wfcard)">
                                 <div class="workspace-listheader">
                                     <h4 class="workspace-listheader-title">{{wfcard.workflowName}}</h4>
                                     <h6 class="instance-id"></h6>

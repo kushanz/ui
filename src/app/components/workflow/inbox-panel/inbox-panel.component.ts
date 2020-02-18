@@ -1,5 +1,5 @@
 import { Component, OnInit,Input,Output,EventEmitter, ViewChild } from '@angular/core';
-import { SwiperDirective, SwiperConfigInterface, SwiperPaginationInterface } from 'ngx-swiper-wrapper';
+import { SwiperDirective, SwiperConfigInterface, SwiperPaginationInterface,SwiperMousewheelInterface,SwiperA11YInterface } from 'ngx-swiper-wrapper';
 // import { SwiperDirective  } from 'ngx-swiper-wrapper'
 import { InboxItem } from "../../../models/inbox-item.model";
 
@@ -16,10 +16,6 @@ export class InboxPanel implements OnInit {
   @Output() closePanel:EventEmitter<boolean> = new EventEmitter<boolean>()
   @ViewChild(SwiperDirective) directiveRef?: SwiperDirective;
 
-  private pagination: SwiperPaginationInterface = {
-    el: '.swiper-pagination',
-    clickable: true
-  };
   constructor() { }
 
   ngOnInit() {
@@ -33,7 +29,7 @@ export class InboxPanel implements OnInit {
 }
 
   public slider_config: SwiperConfigInterface = {
-    a11y: true,
+    a11y: false,
     speed:150,
     direction: 'horizontal',
     slidesPerView: 4,
@@ -41,9 +37,19 @@ export class InboxPanel implements OnInit {
     mousewheel: true,
     scrollbar: false,
     navigation: true,
-    pagination: this.pagination,
+    pagination: { el: '.swiper-pagination', clickable: true },
     observer:true,
   }
+  private pagination: SwiperPaginationInterface = {
+    el: '.swiper-pagination',
+    clickable: true
+  };
+  private mousewheel: SwiperMousewheelInterface = {
+    releaseOnEdges: true
+  };
+  public a11y: SwiperA11YInterface = {
+    paginationBulletMessage: 'paginationBulletMessage'
+    };
   // public slider_config: SwiperConfigInterface = {
   //   direction: 'horizontal',
   //   slidesPerView: 3,
