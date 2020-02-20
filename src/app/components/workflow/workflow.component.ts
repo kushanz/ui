@@ -41,7 +41,18 @@ export class WorkflowComponent implements OnInit {
 
   public formPermission: Array<FormPermission> = new Array<FormPermission>();
   public formPermissionIsLoading:boolean;
-
+  public masonryDivLeft:string;
+  public masonryOptions = {
+          transitionDuration: '0.8s',
+          fitWidth: false,
+          originLeft:true,
+          originTop: true,
+          horizontalOrder:true,
+          resize:true,
+          gutter: 10,
+          percentPosition: true,
+          initLayout: true,
+        }
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -180,8 +191,21 @@ export class WorkflowComponent implements OnInit {
       this.formPermissionIsLoading = false
     })
   }
+  loadInboxItems(card:workflowModal,event) {
+    let offsetLeft = 0;
+    let offsetTop = 0;
+    let el = event.srcElement;
+    while(el){
+        offsetLeft += el.offsetLeft;
+        offsetTop += el.offsetTop;
+        el = el.parentElement;
+    }
+    // console.log({ offsetTop:offsetTop , offsetLeft:offsetLeft })
+    this.masonryDivLeft = (offsetLeft*-1)+30+"px"
+    console.log(this.masonryDivLeft)
 
-  loadInboxItems(card:workflowModal) {
+    this.inboxItems = []
+    this.activeWorkFlowCard = card
     this.isOpenPanel = true
     this.isInboxLoader = true
     if(card.workflowId) {
@@ -191,6 +215,17 @@ export class WorkflowComponent implements OnInit {
       })
     }
   }
+  // loadInboxItems(card:workflowModal) {
+  //   this.activeWorkFlowCard = card
+  //   this.isOpenPanel = true
+  //   this.isInboxLoader = true
+  //   if(card.workflowId) {
+  //     this.apiService.getInboxListNew(this.selectedType,0,100,card.workflowId).subscribe((data:any) => {
+  //       this.inboxItems = data
+  //       this.isInboxLoader = false
+  //     })
+  //   }
+  // }
   closePanel() {
     this.isOpenPanel = false;
   }

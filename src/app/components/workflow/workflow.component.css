@@ -491,6 +491,12 @@ ul.workflow-dropdownlist  .workflow-dropdown-item:hover {
     border-radius: 10px;
     z-index: 100;
     cursor: pointer;
+    transition: .4s;
+    border-color: #104bec;
+    border-width: 2px;
+}
+.workspace-listheader.active {
+    border: 2px solid #e0d9d9;
 }
 .workspace-listheader-title {
     color: #59626D;
@@ -505,7 +511,7 @@ ul.workflow-dropdownlist  .workflow-dropdown-item:hover {
 }
 .workspace-listheader-notify {
     position: absolute;
-    background: #E72E37 0% 0% no-repeat padding-box;
+    /* background: #E72E37 0% 0% no-repeat padding-box; */
     width: 22px;
     height: 22px;
     top: -6px;
@@ -517,6 +523,10 @@ ul.workflow-dropdownlist  .workflow-dropdown-item:hover {
     line-height: 22px;
     overflow: hidden;
 }
+.workspace-listheader-notify.all { background: #969494 0% 0% no-repeat padding-box; }
+.workspace-listheader-notify.pending { background: #E72E37 0% 0% no-repeat padding-box; }
+.workspace-listheader-notify.completed { background: #3ea04b 0% 0% no-repeat padding-box; }
+.workspace-listheader-notify.timesc { background: #d36532 0% 0% no-repeat padding-box; }
 .workspace-item {
     position: relative;
     width: 285px;
@@ -616,6 +626,26 @@ ul.workflow-dropdownlist  .workflow-dropdown-item:hover {
 .workspace-list.expand {
     z-index: 950;
 }
+
+.inboxpanel2 {
+    /* overflow: scroll; */
+    /* background: #ffffff; */
+    z-index: 1000;
+    width: 99vw;
+    min-height: 150px;
+    transition: all 0.5s;
+    position: relative;
+    padding: 0.5em;
+}
+.masonry-card {
+    background: #fff;
+    width: 250px;
+    height: 100px;
+    border: 1px solid #e9eaeb;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
 @media screen and (max-width: 576px) { 
     .workspace-listheader{
         width: 100%;

@@ -435,12 +435,42 @@
                         </div>
 
                         <div class="col-md-3" *ngFor="let wfcard of workflowCards" >
-                            <div class="workspace-wrapper" (click)="loadInboxItems(wfcard)">
-                                <div class="workspace-listheader">
+                            <div class="workspace-wrapper" (click)="loadInboxItems(wfcard,$event)">
+                                <div class="workspace-listheader" [class.active]="wfcard==activeWorkFlowCard">
                                     <h4 class="workspace-listheader-title">{{wfcard.workflowName}}</h4>
                                     <h6 class="instance-id"></h6>
-                                    <span class="workspace-listheader-notify">{{wfcard.itemCount}}</span>
+                                    <span class="workspace-listheader-notify" 
+                                        [ngClass]="{'all':selectedType==='All','pending':selectedType==='Pending','completed':selectedType==='Completed','timesc':selectedType==='TimeEscalated'}">
+                                        {{wfcard.itemCount}}
+                                    </span>
                                 </div>
+                            </div>
+                            <div *ngIf="isOpenPanel && (wfcard==activeWorkFlowCard)" class="inboxpanel2" [style.left]="masonryDivLeft">
+                                <!-- masonry -->
+                                <ngx-masonry [options]="masonryOptions" [useImagesLoaded]="true" 
+                                                [updateLayout]="masonryItems"
+                                                [useAnimation]="true">
+                                    <div ngxMasonryItem class="masonry-item" *ngFor="let item of inboxItems">
+                                        <!-- <div class="masonry-card">
+                                            {{item.id}}
+                                        </div> -->
+                                        <div class="workspace-item">
+                                            <div class="workspace-item-content" (click)="doItemModal(true)">
+                                                <div class="workspace-item-user">
+                                                    <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="">
+                                                </div>
+                                                <div class="workspace-item-date">July 31, 2019</div>
+                                                <h4>Randall Hurley</h4>
+                                                <span class="workspace-sub-content">UXSEA Summit 2049</span>
+                                                <span class="workspace-sub-content">Manila to Singapore</span>
+                                            </div>
+                                            <div class="workspace-item-footer">
+                                                <span class="workspace-item-accept">Approve</span>
+                                                <span class="workspace-item-decline">Decline</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ngx-masonry>
                             </div>
                         </div>
                     </div>
@@ -450,11 +480,12 @@
     </ng-scrollbar>
 </div>
 <!-- inboc item load modal -->
-<inbox-panel 
+<!-- <inbox-panel 
     [openPanel]="isOpenPanel"
     [inboxItems]="inboxItems"
     [loader] = "isInboxLoader"
-    (closePanel)="closePanel()"></inbox-panel>
+    (closePanel)="closePanel()">
+</inbox-panel> -->
     <!-- new request modals -->
     <new-request-modal 
         [openModal]="openNewRequestModal" 
