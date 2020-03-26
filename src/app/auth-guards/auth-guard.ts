@@ -13,13 +13,15 @@ import { GlobalEventsService } from '../services/global-events.service';
 export class AuthGuardService implements CanActivate {
 
   public initializedOnce: boolean = false;
+  // public static token: string = ""
   public static token: string = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJVc2VyUmVmZXJlbmNlSWQiOiJleUowWlc1aGJuUkpaQ0k2TVN3aWRYTmxja2xrSWpveE0zMD0iLCJVc2VyTmFtZSI6ImFkbWluIiwiRW1haWwiOiJlbmFkb2NtYWR1c2hpQGdtYWlsLmNvbSIsIkZpcnN0TmFtZSI6IlN5c3RlbSIsIkxhc3ROYW1lIjoiQWRtaW4iLCJUZW5hbnRJZCI6MX0.gROfCecEgen0HFgiJ9hiNIWZX4ZqjEVRIJv5yYtlpRs';
   code: string = "";
   jwt: any = {};
   public static isSignOut : boolean = false;
 
   constructor(public router: Router, private activeRoute: ActivatedRoute, private apiService: ApiService,
-    @Inject(DOCUMENT) private document: any, private globalVars: GlobalVars, private translate: TranslateService, private notificationHub: NotificationHub, private globalEventsService: GlobalEventsService) {
+    @Inject(DOCUMENT) private document: any, private globalVars: GlobalVars, private translate: TranslateService, private notificationHub: NotificationHub, 
+    private globalEventsService: GlobalEventsService) {
   }
   async canActivate(): Promise<boolean> {
     console.log("AUTHGUARD HIT ", "Initialized " + this.initializedOnce)

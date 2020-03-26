@@ -6,7 +6,7 @@ import { User } from '../models/user.model';
 export class GlobalVars {
     private messageSource = new BehaviorSubject('default message');
     currentMessage = this.messageSource.asObservable();
-    private user = new Subject<User>()
+    private user = new BehaviorSubject<User>(new User())
 
     setUser(user:User) {
         this.user.next(user);

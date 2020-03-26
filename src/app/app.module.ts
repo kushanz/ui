@@ -6,9 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClickOutsideModule } from 'ng-click-outside';
 // filters
 import { wfSearchFilter } from './filters/newworkflow.filter';
+import { Exceed99 } from './filters/exceed99.filter'
+
 // scrollbar add
 // import { PerfectScrollbarModule, PerfectScrollbarConfigInterface,PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { NgScrollbarModule,NG_SCROLLBAR_OPTIONS } from 'ngx-scrollbar';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 // add notification module
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
@@ -27,7 +29,7 @@ import { LoaderSvgComponent } from './components/common/loader-svg/loader-svg.co
 import { LoaderErrorComponent } from './components/common/loader-error/loader-error.component';
 
 // workflow module
-import { WorkflowComponent } from './components/workflow/workflow.component';
+import { WorkflowComponent, InboxFormSafePipe } from './components/workflow/workflow.component';
 import { FormsComponent } from './components/forms/forms.component';
 import { NewRequestModalComponent } from './components/workflow/new-request-modal/new-request-modal.component';
 import { WorkflowItemModalComponent } from './components/workflow/workflow-item-modal/workflow-item-modal.component';
@@ -44,7 +46,7 @@ import { GlobalVars } from './services/globalvars.service';
 import { TrackService } from './services/track.service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { InboxPanel } from './components/workflow/inbox-panel/inbox-panel.component';
+// import { InboxPanel } from './components/workflow/inbox-panel/inbox-panel.component';
 import { MasnoryPanelComponent } from './components/workflow/masnory-panel/masnory-panel.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -57,13 +59,15 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AppComponent,
     SidebarComponent,
     WorkflowComponent,
+    InboxFormSafePipe,
     FormsComponent,
     NewRequestModalComponent,
     WorkflowItemModalComponent,
     LoaderSvgComponent,
     wfSearchFilter,
+    Exceed99,
     LoaderErrorComponent,
-    InboxPanel,
+    // InboxPanel,
     MasnoryPanelComponent,
   ],
   imports: [

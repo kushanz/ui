@@ -1,0 +1,48 @@
+{
+    "common":{
+    },
+    "navbar": {
+        "home": "මුල් පිටුව",
+        "inbox": "ලැබීම්  ගොනුව",
+        "newWorkflow": "නව කාර්යය ප්‍රවාහ",
+        "search": "සෙවුම",
+        "settings": "සැකසුම්",
+        "signOut": "බැහැර වීම",
+        "hello": "සුභ දවසක්,",
+        "language-en":"ඉංග්‍රීසි" ,
+        "language-si":"සිංහල" ,
+        "language-ta":"දෙමළ" 
+    },
+    "dashboard":{
+        "dashboard": "උපකරණ පුවරුව"
+    },
+    "inbox": {
+        "all": "සියලු",
+        "pending": "විසදීමට තිබෙන",
+        "completed": "සම්පුර්ණයි",
+        "timeEscalated": "කාලය උත්සන්න",
+        "referenceNumber": "යොමු අංකය",
+        "keyword": "මූල පදය",
+        "search_v": "සොයන්න",
+        "enter": "ඇතුල් කරන්න",
+        "enterReferencenumber": "යොමු අංකය ඇතුලත් කරන්න",
+        "enterKeyword": "මූල පදය ඇතුළත් කරන්න"
+    },
+    "newworkflow":{
+        "emptyinitiations":"ඔබ සඳහා කාර්ය ප්‍රවාහ කිසිවක් නොමැත"
+    },
+    "search":{
+        "selectworkflowtosearch": "සෙවීමට කාර්ය ප්රවාහය තෝරන්න",
+        "referenceNumber": "යොමු අංකය",
+        "keyword": "මූල පදය",
+        "search_v": "සොයන්න",
+        "initiatedDate": "ආරම්භ කළ දිනය",
+        "searchPhaseEmptyAlert": " සෙවීම ආරම්භ කිරීම සඳහා කාර්ය ප්‍රවාහයක් තෝරා මූල පදය  ඇතුලත් කරන්න",
+        "enterReferencenumber": "යොමු අංකය ඇතුලත් කරන්න",
+        "enterKeyword": "මූල පදය ඇතුළත් කරන්න"
+    },
+    "settings":{
+        "selectYourLanguage" : "කරුණාකර ඔබගේ තේරීම තෝරන්න",
+        "language": "භාෂාව"
+    }
+}

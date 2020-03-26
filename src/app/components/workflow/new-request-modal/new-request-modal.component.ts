@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input,Output,EventEmitter,HostListener } from '@angular/core';
 import {trigger,transition,style,animate,query,group} from '@angular/animations';
 import { DomSanitizer,SafeResourceUrl } from "@angular/platform-browser";
 // import {trigger,transition,style,animate} from '@angular/animations';
@@ -50,6 +50,12 @@ export class NewRequestModalComponent implements OnInit {
   @Input('formPermission') public formPermission:Array<FormPermission>;
   @Input('formPermissionIsLoading') public formPermissionIsLoading:boolean;
   @Output('closeModal') public closeModal:EventEmitter<boolean> = new EventEmitter<boolean>()
+  innerWidth:number;
+  @HostListener('window:resize', ['$event'])
+    onResize(event) {
+  this.innerWidth = window.innerWidth;
+}
+  public categoryType:Array<Object>;
   public isNewWorkFlow:boolean = false;
   public newWorkFlowSearch:string ="";
   public selectedWorkFlow:any = {};
@@ -57,7 +63,15 @@ export class NewRequestModalComponent implements OnInit {
   public maximize:boolean;
   constructor(private apiService: ApiService, private sanitizer: DomSanitizer) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.innerWidth = window.innerWidth;
+    this.categoryType = [ // ctegory icon array load here 
+      {
+        name:'travel',
+        icon: ""
+      }
+    ]
+  }
   close() {
     this.openModal = false;
     this.newWorkFlowSearch = "";

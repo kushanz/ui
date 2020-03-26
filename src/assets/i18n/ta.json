@@ -1,0 +1,47 @@
+{
+    "common":{
+    },
+    "navbar": {
+        "home": "முகப்பு",
+        "inbox": "உட்பெட்டி",
+        "newWorkflow": "புதிய பணியோட்டம்",
+        "search": "தேடல்/தேடு",
+        "settings": "அமைப்புகள்",
+        "signOut": "வெளியேறு",
+        "hello": "Helவணக்கம்,",
+        "language-en":"ஆங்கிலம்" ,
+        "language-si":"சிங்களம்" ,
+        "language-ta":"தமிழ்" 
+    },
+    "dashboard":{
+        "dashboard": "கட்டுப்பாட்டகம்"
+    },
+    "inbox": {
+        "all": "அனைத்து",
+        "pending": "நிலுவையில்",
+        "completed": "நிறைவு",
+        "timeEscalated": "நேரம் அதிகரித்தது",
+        "referenceNumber": "குறிப்பு எண்",
+        "keyword": "குறிப்புச்சொல்",
+        "search_v": "தேடு",
+        "enterKeyword": "முக்கிய சொல்லை உள்ளிடவும்",
+        "enterReferencenumber": "குறிப்பு எண்ணை உள்ளிடவும்"
+    },
+    "newworkflow":{
+        "emptyinitiations":"உங்களுக்கான பணியிட பொருட்களை இல்லை."
+    },
+    "search":{
+        "selectworkflowtosearch": "பணிப்பாய்வு ஒன்றைத் தேர்ந்தெடுக்கவும்",
+        "referenceNumber": "குறிப்பு எண்",
+        "keyword": "குறிப்புச்சொல்",
+        "search_v": "தேடு",
+        "initiatedDate": "ஆரம்பிக்கப்பட்ட தேதி",
+        "searchPhaseEmptyAlert": "ஒரு பணிப்பொயைத் தேர்ந்தெடுத்து, தேடலைத் தொடங்க முக்கிய வார்த்தைகளை உள்ளிடுக",
+        "enterKeyword": "முக்கிய சொல்லை உள்ளிடவும்",
+        "enterReferencenumber": "குறிப்பு எண்ணை உள்ளிடவும்"
+    },
+    "settings":{
+        "selectYourLanguage" : "தயவுசெய்து உங்கள் பிரபஞ்சத்தைத் தேர்ந்தெடுக்கவும்",
+        "language": "மொழி"
+    }
+}

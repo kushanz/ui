@@ -1,0 +1,49 @@
+{
+    "common":{
+    },
+    "navbar": {
+        "home": "Home",
+        "inbox": "Inbox",
+        "newWorkflow": "New workflow",
+        "search": "Search",
+        "searchInbox": "Search Inbox",
+        "filter": "Filter",
+        "settings": "Settings",
+        "signOut": "Sign out",
+        "hello": "Hello,",
+        "language-en":"English" ,
+        "language-si":"Sinhala" ,
+        "language-ta":"Tamil" 
+    },
+    "dashboard":{
+        "dashboard": "Dashboard"
+    },
+    "inbox": {
+        "all": "All",
+        "pending": "Pending",
+        "completed": "Completed",
+        "timeEscalated": "Time escalated",
+        "referenceNumber": "Reference number",
+        "keyword": "Keyword",
+        "search_v": "Search",
+        "enterKeyword": "Enter keyword",
+        "enterReferencenumber": "Enter reference number"
+    },
+    "newworkflow":{
+        "emptyinitiations":"No workflow items for you."
+    },
+    "search":{
+        "selectworkflowtosearch": "Select a workflow",
+        "referenceNumber": "Reference number",
+        "keyword": "Keyword",
+        "search_v": "Search",
+        "initiatedDate": "Initiated date",
+        "searchPhaseEmptyAlert": "Select a workflow and enter keyword to start search",
+        "enterKeyword": "Enter keyword",
+        "enterReferencenumber": "Enter reference number"
+    },
+    "settings":{
+        "selectYourLanguage" : "Please select your prefference",
+        "language": "Language"
+    }
+}

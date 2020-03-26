@@ -260,23 +260,32 @@
         </button>
     </div>
     <div class="wf-user" (click)="usermenu(true)">
-        <span class="user-image">
-            <img src="https://randomuser.me/api/portraits/women/85.jpg" alt="">
+        <span class="user-image" title="{{ user.firstName+' '+user.lastName }}" [ngStyle]="{'background': strToRgb(user.firstName+' '+user.lastName)}">
+            <!-- <img src="https://randomuser.me/api/portraits/women/85.jpg" alt=""> -->
+            {{ user.firstName.charAt(0).toUpperCase()+user.lastName.charAt(0).toUpperCase() }}
         </span>
-        <span class="username">User Name</span>
+        <span class="logusername">{{user.firstName}} {{user.lastName}}</span>
         <div class="user-dropdown" [class.show]="isUserMenu" (clickOutside)="usermenu(false)" [exclude]="'.wf-user'">
             <ul class="user-dropdown-list">
                 <li class="user-dropdown-item">
-                    <span>My Profile</span>
+                    <a >
+                        <span>My Profile</span>
+                    </a>
                 </li>
                 <li class="user-dropdown-item">
-                    <span>Settings</span>
+                    <a [routerLink]="['/settings']" title="{{'navbar.settings' | translate}}">
+                        <span>Settings</span>
+                    </a>
                 </li>
                 <li class="user-dropdown-item">
-                    <span>Help</span>
+                    <a >
+                        <span>Help</span>
+                    </a>
                 </li>
-                <li class="user-dropdown-item">
-                    <span>Logout</span>
+                <li class="user-dropdown-item" (click)="onClickSignOut()">
+                    <a >
+                        <span>Logout</span>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -288,7 +297,7 @@
 <div id="appcontent">
     <loader-svg [show]="isLoadingwf"></loader-svg>
     <loader-error [loaderror]="isErrorLoading"></loader-error>
-        <ng-scrollbar appearance="standard" visibility="hover" compact="false">
+        <ng-scrollbar #scrollable appearance="standard" visibility="hover" compact="false">
             <div class="container" style="max-width: 100%;">
                 <div class="searchpanel" *ngIf="isOpenSearchPanel">
                     <div class="row">
@@ -378,7 +387,7 @@
                 </div>
                 <div class="cardpanel">
                     <div class="row">
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <div class="workspace-wrapper">
                                 <div class="workspace-listheader" (click)="toggleWorkspaceList('travel')" [ngClass]="{'activecard':openWorkspaceList==='travel'}">
                                     <h4 class="workspace-listheader-title">Travel</h4>
@@ -432,40 +441,67 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="col-md-3" *ngFor="let wfcard of workflowCards" >
-                            <div class="workspace-wrapper" (click)="loadInboxItems(wfcard,$event)">
+                            <div class="workspace-wrapper" (click)="loadInboxItems(wfcard,$event);">
                                 <div class="workspace-listheader" [class.active]="wfcard==activeWorkFlowCard">
+                                    <loader-svg [show]="isInboxLoader && wfcard==activeWorkFlowCard"></loader-svg>
                                     <h4 class="workspace-listheader-title">{{wfcard.workflowName}}</h4>
                                     <h6 class="instance-id"></h6>
                                     <span class="workspace-listheader-notify" 
                                         [ngClass]="{'all':selectedType==='All','pending':selectedType==='Pending','completed':selectedType==='Completed','timesc':selectedType==='TimeEscalated'}">
-                                        {{wfcard.itemCount}}
+                                        {{ wfcard.itemCount | exceed99 }}
+                                    </span>
+                                    <span class="workflowcardicon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="68.663" height="57.273" viewBox="0 0 68.663 57.273"><defs><style>.a{fill:#496aee;}</style></defs><path class="a" d="M220.625,334.508c-2.865-4.705-7.408-7.564-11.535-10.858-1.8-1.434-3.7-2.732-5.475-4.192-2.016-1.659-2-3.005-.087-4.831,2.349-2.246,4.58-2.522,7.487-1.122,7.079,3.41,14.158,6.824,21.319,10.057a4.3,4.3,0,0,0,3.518-.392c3.321-2.175,6.4-4.724,9.684-6.953a19.222,19.222,0,0,1,10.934-3.538c3.44.007,4.64,1.653,3.717,4.969a18.851,18.851,0,0,1-6.709,9.644c-2.959,2.38-6.041,4.614-9.161,6.781a3.465,3.465,0,0,0-1.679,3.781c1.2,7.683,2.4,15.367,3.418,23.074.194,1.464.094,3.466-.759,4.451a9.814,9.814,0,0,1-4.979,2.868c-.573.134-1.984-2.1-2.567-3.439-2.7-6.207-4.064-13-8.309-18.519l-.543-.7c-4.218,2.568-8.519,4.983-12.555,7.78-1.087.753-1.722,2.61-1.949,4.057-.4,2.518-.149,5.135-.5,7.664a6.966,6.966,0,0,1-1.7,3.674c-1.884,1.954-4,1.378-4.774-1.234-1.541-5.226-3.362-10.288-7.587-14.014-1.782-1.571-3.77-2.909-5.672-4.344-1.245-.939-2.944-1.646-2.118-3.718a4.03,4.03,0,0,1,4.713-2.575,58.587,58.587,0,0,1,7.69,1.948,5.962,5.962,0,0,0,6.478-1.665C214.021,340.158,217.353,337.4,220.625,334.508Z" transform="translate(-191.823 -312.648)"/></svg>
                                     </span>
                                 </div>
                             </div>
                             <div *ngIf="isOpenPanel && (wfcard==activeWorkFlowCard)" class="inboxpanel2" [style.left]="masonryDivLeft">
                                 <!-- masonry -->
-                                <ngx-masonry [options]="masonryOptions" [useImagesLoaded]="true" 
-                                                [updateLayout]="masonryItems"
-                                                [useAnimation]="true">
-                                    <div ngxMasonryItem class="masonry-item" *ngFor="let item of inboxItems">
+                                <ngx-masonry [options]="masonryOptions" [useImagesLoaded]="true" >
+                                    <div ngxMasonryItem class="masonry-item id-{{item.id}}" *ngFor="let item of inboxItems">
                                         <!-- <div class="masonry-card">
                                             {{item.id}}
                                         </div> -->
                                         <div class="workspace-item">
-                                            <div class="workspace-item-content" (click)="doItemModal(true)">
+                                            <div class="workspace-item-content" (click)="openItemModal();setActiveInboxItem(item)">
                                                 <div class="workspace-item-user">
-                                                    <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="">
+                                                    <!-- <img src="https://randomuser.me/api/portraits/men/46.jpg" alt=""> -->
+                                                    <span 
+                                                    title="{{item.entityInvolvements[0].userData.firstName+' '+item.entityInvolvements['0'].userData.lastName}}"
+                                                    *ngIf="item.entityInvolvements && item.entityInvolvements[0].type=='User'; else applicationuser"
+                                                    [ngStyle]="{'background': strToRgb(item.entityInvolvements[0]?.userData.userName)}" class="inbox-username">
+                                                    {{ item.entityInvolvements[0].userData.firstName.charAt(0).toUpperCase()+item.entityInvolvements['0'].userData.lastName.charAt(0).toUpperCase() }}
+                                                    </span>
+                                                    <ng-template #applicationuser>
+                                                        <span class="inbox-appuser" title="system user">
+                                                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
+                                                                <style type="text/css">
+                                                                    .systemuser{fill:#6CAF41;}
+                                                                </style>
+                                                                <path class="systemuser" d="M35.2,21h29.5v53.6H35.2V21z M50,76.1c-1.7,0-3,1.3-3,3s1.3,3,3,3s3-1.3,3-3S51.6,76.1,50,76.1z M46.8,18.4h6.5
+                                                                    c0.7,0,1.2-0.5,1.2-1.2c0-0.7-0.5-1.2-1.2-1.2h-6.5c-0.7,0-1.2,0.5-1.2,1.2C45.6,17.9,46.1,18.4,46.8,18.4z M97.9,50.3
+                                                                    c0,26.6-21.6,48.2-48.2,48.2c-26.6,0-48.2-21.6-48.2-48.2c0-26.6,21.6-48.2,48.2-48.2C76.3,2.2,97.9,23.7,97.9,50.3z M67.6,17.9
+                                                                    c0-2.6-2.1-4.7-4.7-4.7H37.1c-2.6,0-4.7,2.1-4.7,4.7v61.9c0,2.6,2.1,4.7,4.7,4.7h25.8c2.6,0,4.7-2.1,4.7-4.7V17.9z"/>
+                                                                </svg>
+                                                        </span>
+                                                    </ng-template>
                                                 </div>
-                                                <div class="workspace-item-date">July 31, 2019</div>
-                                                <h4>Randall Hurley</h4>
-                                                <span class="workspace-sub-content">UXSEA Summit 2049</span>
-                                                <span class="workspace-sub-content">Manila to Singapore</span>
+                                                <div class="workspace-item-date" title="{{ item.date | date:'medium' }}">{{item.date | date}}</div>
+                                                <h4 class="workflowitemtitle"  *ngIf="item.entityInvolvements && item.entityInvolvements[0].type == 'User' else nodata">
+                                                    {{item.entityInvolvements[0].userData.firstName+' '+ item.entityInvolvements[0].userData.lastName}}
+                                                </h4>
+                                                <h4 class="workflowitemtitle" *ngIf="item.entityInvolvements && item.entityInvolvements[0].type == 'Application' else nodata">
+                                                    {{item.entityInvolvements[0].appData.name ? item.entityInvolvements[0].appData.name : ""}}
+                                                </h4>
+                                                <ng-template #nodata></ng-template>
+                                                <span class="workspace-sub-id">{{item.workflowInstaceId}}</span>
+                                                <span class="workspace-sub-content" title="{{item.workflowName}}">{{item.workflowName}}</span>
                                             </div>
                                             <div class="workspace-item-footer">
-                                                <span class="workspace-item-accept">Approve</span>
+                                                <span class="workspace-item-accept" (click)="approve(item)">Approve</span>
                                                 <span class="workspace-item-decline">Decline</span>
                                             </div>
                                         </div>
@@ -493,4 +529,8 @@
         [formPermissionIsLoading]="formPermissionIsLoading" 
         (closeModal)="doNewReqModal($event)" >
     </new-request-modal>
-    <workflow-item-modal [openModal]="openItemModal" (closeModal)="doItemModal($event)"></workflow-item-modal>
+    <workflow-item-modal 
+        [openModal]="doItemModal"
+        [inboxitem]='activeInboxItem'
+        (closeModal)="closeItemModal()">
+    </workflow-item-modal>

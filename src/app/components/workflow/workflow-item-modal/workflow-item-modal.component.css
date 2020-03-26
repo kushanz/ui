@@ -1,7 +1,7 @@
 .modalOverlay {
     z-index: 1000;
     display: none;
-    padding-top: 100px;
+    /* padding-top: 100px; */
     position: fixed;
     left: 0;
     top: 0;
@@ -13,15 +13,23 @@
     animation: fadeModal 0.2s forwards;
     color: #707070;
 }
-.modalOverlay.show {display: block;}
+.modalOverlay.show {display: flex;}
 .modalContainer {
     border-radius: 10px;
-    padding: 1em 2em;
-    width: 700px;
+    padding: 2em 1em;
+    width: 60%;
+    height: 80%;
     margin: auto;
     background-color: #fff;
     position: relative;
     animation: zoomModal 0.2s forwards;
+    transition: all 0.2s;
+}
+.modalContainer.maximize {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+
 }
 .modalClose {
     position: absolute;
@@ -29,7 +37,7 @@
     top: 0;
     border: 0;
     display: inline-block;
-    padding: 16px;
+    padding: 5px;
     vertical-align: middle;
     overflow: hidden;
     text-decoration: none;
@@ -39,8 +47,45 @@
     white-space: nowrap;
     z-index: 500;
 }
+.modalMax {
+    position: absolute;
+    right: 35px;
+    width: 30px;
+    top: 0;
+    border: 0;
+    display: inline-block;
+    padding: 5px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    z-index: 500;
+}
+.modalswitch {
+    position: absolute;
+    right: 65px;
+    width: 30px;
+    top: 0;
+    border: 0;
+    display: inline-block;
+    padding: 5px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    z-index: 500;   
+}
 .modalContent {   
     display: block;
+    overflow: hidden;
+    position: relative;
+    min-height: 100%;
 }
 .modalTitle {
     font-size: 20px;
@@ -145,7 +190,7 @@
 .modalContent .item-modal-content {
     padding-top: 1rem;
     font-size: 14px;
-    height: 300px;
+    height: 100%;
 }
 .modalContent .item-comment {
     font-weight: bold;
@@ -159,9 +204,11 @@
         width: 500px;
     }
 }
-@media (max-width: 600px){
+@media screen and (max-width: 576px){
     .modalContainer {
-        margin: 0 10px;
-        width: auto!important;
+        margin: 0;
+        width: 100% !important;
+        height: 100%;
+        border-radius: unset;
     }
 }
